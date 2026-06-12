@@ -162,8 +162,16 @@ window.SW_SCHEMA = [
       { key: "pf3_s3n", label: "P3 Stat 3 Number", def: "0", w: "s" },
       { key: "pf3_s3l", label: "P3 Stat 3 Label", def: "Missed deadlines" },
 
-      { key: "pf4_tag", label: "Project 4 Tag", def: "ALSO BUILDING FOR" },
-      { key: "pf4_desc", label: "Project 4 Text", def: "Medha Care (healthcare), QuestX (edtech), and Sky Blue Publication (publishing) — websites, growth systems, and digital infrastructure across three more industries.", type: "textarea" }
+      { key: "pf4_tag", label: "Also-Building Heading", def: "ALSO BUILDING FOR" },
+      { key: "ab1_name", label: "Mini Card 1 Name", def: "Medha Care" },
+      { key: "ab1_tag", label: "Mini Card 1 Industry", def: "Healthcare" },
+      { key: "ab1_desc", label: "Mini Card 1 Text", def: "Website, patient-first growth systems, and digital infrastructure for a healthcare brand." },
+      { key: "ab2_name", label: "Mini Card 2 Name", def: "QuestX" },
+      { key: "ab2_tag", label: "Mini Card 2 Industry", def: "Edtech" },
+      { key: "ab2_desc", label: "Mini Card 2 Text", def: "Learning platform presence, admissions funnels, and growth marketing for an edtech venture." },
+      { key: "ab3_name", label: "Mini Card 3 Name", def: "Sky Blue Publication" },
+      { key: "ab3_tag", label: "Mini Card 3 Industry", def: "Publishing" },
+      { key: "ab3_desc", label: "Mini Card 3 Text", def: "Catalogue, storefront, and reader-growth systems for an independent publishing house." }
     ]
   },
   {
@@ -188,19 +196,6 @@ window.SW_SCHEMA = [
       { key: "game_end_h", label: "End Headline", def: "Not bad at all!" },
       { key: "game_end_p", label: "End Message", def: "Now imagine a 20+ person team catching leads for you every single day — minus the finger cramps. Leave your number and we'll show you how it works.", type: "textarea" },
       { key: "game_form_btn", label: "Form Button", def: "Catch Me Some Real Leads" }
-    ]
-  },
-  {
-    section: "Founder Story Band",
-    icon: "zap",
-    hint: "The journey band. Honest and human.",
-    fields: [
-      { key: "story_kicker", label: "Kicker", def: "The Journey" },
-      { key: "story_h1", label: "Headline Line 1", def: "3 Years of NEET. 592 Marks." },
-      { key: "story_h2", label: "Headline Line 2 (gradient)", def: "Then We Chose to Build Instead." },
-      { key: "story_p1", label: "Paragraph 1", def: "No degree. No classroom. No shortcuts. Just a self-taught developer from Diamond Harbour who learned to code in Next.js and React, run ads, and operate frontier AI — and turned a heritage publisher's quiet online presence into a 186K-sessions-a-month growth engine at 4.1x ROAS.", type: "textarea" },
-      { key: "story_p2", label: "Paragraph 2", def: "Every skill we offer, we earned the hard way. That's why we treat your budget like it's our own — we know exactly what it costs to earn it.", type: "textarea" },
-      { key: "story_funny", label: "Light Line", def: "Turns out Google Ads never asks for your NEET score." }
     ]
   },
   {

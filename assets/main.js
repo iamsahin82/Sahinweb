@@ -142,15 +142,23 @@
   var burger = document.querySelector('.hamburger');
   var mobileMenu = document.querySelector('.mobile-menu');
   if (burger && mobileMenu) {
-    burger.addEventListener('click', function () {
+    burger.addEventListener('click', function (e) {
+      e.stopPropagation();
       var open = mobileMenu.classList.toggle('open');
-      document.body.style.overflow = open ? 'hidden' : '';
+      burger.classList.toggle('is-open', open);
       mobileMenu.querySelectorAll('a').forEach(function (a, i) {
-        a.style.transitionDelay = open ? (0.06 * i + 0.1) + 's' : '0s';
+        a.style.transitionDelay = open ? (0.05 * i + 0.08) + 's' : '0s';
       });
     });
     mobileMenu.querySelectorAll('a').forEach(function (a) {
-      a.addEventListener('click', function () { mobileMenu.classList.remove('open'); document.body.style.overflow = ''; });
+      a.addEventListener('click', function () { mobileMenu.classList.remove('open'); burger.classList.remove('is-open'); });
+    });
+    /* tap outside closes the menu */
+    document.addEventListener('click', function (e) {
+      if (mobileMenu.classList.contains('open') && !mobileMenu.contains(e.target) && !burger.contains(e.target)) {
+        mobileMenu.classList.remove('open');
+        burger.classList.remove('is-open');
+      }
     });
   }
 
@@ -202,18 +210,32 @@
   particles('particles', 70);
   particles('particles2', 45);
 
-  /* ============ HERO CHAR REVEAL ============ */
+  /* ============ HERO CHAR REVEAL (word-aware — never breaks mid-word) ============ */
   document.querySelectorAll('.char-reveal').forEach(function (el) {
     var text = el.textContent;
     el.textContent = '';
     el.setAttribute('aria-label', text);
-    Array.prototype.forEach.call(text, function (ch, i) {
-      var s = document.createElement('span');
-      s.className = 'char';
-      s.style.animationDelay = (0.03 * i + 0.15) + 's';
-      s.innerHTML = ch === ' ' ? '&nbsp;' : ch;
-      s.setAttribute('aria-hidden', 'true');
-      el.appendChild(s);
+    var i = 0;
+    text.split(' ').forEach(function (word, wi) {
+      if (wi > 0) {
+        var sp = document.createElement('span');
+        sp.className = 'char-space';
+        sp.innerHTML = ' ';
+        el.appendChild(sp);
+      }
+      var w = document.createElement('span');
+      w.className = 'word';
+      w.setAttribute('aria-hidden', 'true');
+      Array.prototype.forEach.call(word, function (ch) {
+        var s = document.createElement('span');
+        s.className = 'char';
+        s.style.animationDelay = (0.03 * i + 0.15) + 's';
+        s.textContent = ch;
+        w.appendChild(s);
+        i++;
+      });
+      el.appendChild(w);
+      i++; /* count the space for timing */
     });
   });
 
@@ -233,20 +255,62 @@
     'gemini': 'googlegemini', 'supabase': 'supabase', 'node.js': 'nodedotjs',
     'postgresql': 'postgresql', 'shopify': 'shopify', 'wordpress': 'wordpress',
     'meta ads': 'meta', 'google ads': 'googleads', 'google analytics': 'googleanalytics',
-    'whatsapp api': 'whatsapp', 'whatsapp': 'whatsapp', 'premiere pro': 'adobepremierepro',
-    'github': 'github', 'tailwind css': 'tailwindcss', 'javascript': 'javascript',
-    'figma': 'figma', 'canva': 'canva', 'youtube': 'youtube', 'instagram': 'instagram'
+    'whatsapp api': 'whatsapp', 'whatsapp': 'whatsapp',
+    'github': 'github', 'tailwind css': 'tailwindcss',
+    'javascript': 'javascript', 'figma': 'figma', 'canva': 'canva',
+    'youtube': 'youtube', 'instagram': 'instagram', 'seo': 'googlesearchconsole'
   };
+  /* Themed fallback icons so EVERY tool always shows a visible icon */
+  var TOOL_FALLBACK = function (name) {
+    var n = name.toLowerCase();
+    if (/video|premiere|effects|reel/.test(n)) return 'film';
+    if (/ads|meta|google|marketing|seo|analytics/.test(n)) return 'target';
+    if (/whatsapp|chat|manychat/.test(n)) return 'chat';
+    if (/ai|claude|gpt|gemini|cursor|veo/.test(n)) return 'bot';
+    return 'code';
+  };
+  function toolIconHTML(name) {
+    var slug = TOOL_ICONS[name.toLowerCase()];
+    var fallback = icon(TOOL_FALLBACK(name));
+    if (!slug) return fallback;
+    return '<img src="https://cdn.simpleicons.org/' + slug + '/00D4FF" alt="" loading="lazy" data-fallback="' + TOOL_FALLBACK(name) + '">';
+  }
+  function armImgFallbacks(root) {
+    root.querySelectorAll('img[data-fallback]').forEach(function (img) {
+      img.addEventListener('error', function () {
+        var span = document.createElement('span');
+        span.innerHTML = icon(img.getAttribute('data-fallback'));
+        img.replaceWith(span.firstChild);
+      });
+      /* already-failed cached errors */
+      if (img.complete && img.naturalWidth === 0) img.dispatchEvent(new Event('error'));
+    });
+  }
   document.querySelectorAll('.marquee[data-marquee="tools"] .marquee-track').forEach(function (track) {
     var tools = (C.tools_list || '').split(',').map(function (t) { return t.trim(); }).filter(Boolean);
     var html = tools.map(function (t) {
-      var slug = TOOL_ICONS[t.toLowerCase()];
-      var img = slug
-        ? '<img src="https://cdn.simpleicons.org/' + slug + '/00D4FF" alt="" loading="lazy" onerror="this.remove()">'
-        : '';
-      return '<span class="tool-chip">' + img + escapeHTML(t) + '</span>';
+      return '<span class="tool-chip">' + toolIconHTML(t) + escapeHTML(t) + '</span>';
     }).join('');
     track.innerHTML = html + html;
+    armImgFallbacks(track);
+  });
+
+  /* ============ HERO CARD TOOL BADGES (data-tools="A,B,C") ============ */
+  document.querySelectorAll('[data-tools]').forEach(function (row) {
+    var tools = row.getAttribute('data-tools').split(',').map(function (t) { return t.trim(); }).filter(Boolean);
+    row.innerHTML = tools.map(function (t) {
+      return '<span class="fc-tool" title="' + escapeHTML(t) + '">' + toolIconHTML(t) + '</span>';
+    }).join('');
+    armImgFallbacks(row);
+  });
+
+  /* ============ FLOAT CARD TOUCH/CLICK BOUNCE ============ */
+  document.querySelectorAll('.float-card').forEach(function (card) {
+    card.addEventListener('click', function () {
+      card.classList.remove('bounce');
+      void card.offsetWidth; /* restart animation */
+      card.classList.add('bounce');
+    });
   });
 
   /* ============ CLIENTS WALL (text or logo image) ============ */

@@ -1,0 +1,35 @@
+PUSH TO GITHUB — 2 MINUTES
+===========================
+Your git repository is already created and committed locally.
+(16 files, first commit done. Your CV file is excluded for privacy.)
+
+OPTION A — Terminal (fastest)
+-----------------------------
+1. Go to https://github.com/new
+   - Repository name:  shahin-web
+   - Keep it Public (or Private, your choice)
+   - Do NOT tick "Add a README" (we already have one)
+   - Click "Create repository"
+
+2. Open Terminal on your Mac and paste these three lines:
+
+   cd ~/Downloads/"Sahin web"
+   git remote add origin https://github.com/YOUR-USERNAME/shahin-web.git
+   git push -u origin main
+
+   (Replace YOUR-USERNAME with your GitHub username.
+    GitHub will ask you to sign in the first time.)
+
+Done. Your site is at github.com/YOUR-USERNAME/shahin-web
+
+OPTION B — GitHub Desktop (no commands)
+---------------------------------------
+1. Install GitHub Desktop: https://desktop.github.com
+2. File > Add Local Repository > choose Downloads/Sahin web
+3. Click "Publish repository"
+
+BONUS — Free hosting with GitHub Pages
+--------------------------------------
+After pushing: repo Settings > Pages > Source: "main" branch > Save.
+Your site goes live at:  https://YOUR-USERNAME.github.io/shahin-web/
+(Then Google can start finding you, Sahin.)

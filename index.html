@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+<link rel="canonical" href="https://iamsahin82.github.io/index.html">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -67,7 +68,7 @@
   <a href="case-studies.html">Case Studies</a>
   <a href="about.html">About</a>
   <a href="contact.html">Contact</a>
-  <a href="book-call.html" class="btn btn-primary" style="margin-top:18px">Book Free Call</a>
+  <a href="book-call.html" class="btn btn-primary" style="margin-top:10px">Book Free Call</a>
 </nav>
 
 <section class="hero rope-host">
@@ -93,6 +94,7 @@
         <span class="trust-item"><span class="ti"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg></span> <span data-bind="trust4">Kolkata &middot; Delhi &middot; Pan-India</span></span>
       </div>
     </div>
+
     <div class="hero-visual" aria-hidden="true">
       <div class="float-card fc-1">
         <div class="fc-label" data-bind="fc1_label">Monthly Sessions</div>
@@ -102,18 +104,22 @@
           <i style="height:18px"></i><i style="height:26px"></i><i style="height:22px"></i>
           <i style="height:34px"></i><i style="height:42px"></i><i style="height:56px"></i>
         </div>
+        <div class="fc-tools" data-tools="SEO,Google Analytics,WordPress,Shopify"></div>
       </div>
       <div class="float-card fc-2">
         <div class="fc-label" data-bind="fc2_label">ROAS</div>
         <div class="fc-value" data-bind="fc2_value">4.1x</div>
         <div class="fc-delta" data-bind="fc2_delta">Profitable &amp; scaling</div>
+        <div class="fc-tools" data-tools="Meta Ads,Google Ads,Premiere Pro,After Effects"></div>
       </div>
       <div class="float-card fc-3">
         <div class="fc-label" data-bind="fc3_label">Products Live</div>
         <div class="fc-value" data-bind="fc3_value">735+</div>
         <div class="fc-ring"><b data-bind="fc3_ring">API</b></div>
+        <div class="fc-tools" data-tools="React,Supabase,Node.js,PostgreSQL"></div>
       </div>
     </div>
+
   </div>
   <div class="scroll-hint"><svg class="ic" aria-hidden="true"><use href="#i-down"/></svg></div>
 </section>
@@ -343,8 +349,25 @@
     </div>
     <div class="also-building reveal">
       <span class="pf-tag" data-bind="pf4_tag">ALSO BUILDING FOR</span>
-      <p data-bind="pf4_desc"></p>
+      <div class="ab-grid">
+        <div class="ab-card">
+          <span class="ab-icon"><svg class="ic" aria-hidden="true"><use href="#i-heart"/></svg></span>
+          <b data-bind="ab1_name">Medha Care</b><i data-bind="ab1_tag">Healthcare</i>
+          <p data-bind="ab1_desc"></p>
+        </div>
+        <div class="ab-card">
+          <span class="ab-icon"><svg class="ic" aria-hidden="true"><use href="#i-grad"/></svg></span>
+          <b data-bind="ab2_name">QuestX</b><i data-bind="ab2_tag">Edtech</i>
+          <p data-bind="ab2_desc"></p>
+        </div>
+        <div class="ab-card">
+          <span class="ab-icon"><svg class="ic" aria-hidden="true"><use href="#i-book"/></svg></span>
+          <b data-bind="ab3_name">Sky Blue Publication</b><i data-bind="ab3_tag">Publishing</i>
+          <p data-bind="ab3_desc"></p>
+        </div>
+      </div>
     </div>
+
   </div>
 </section>
 
@@ -407,20 +430,37 @@
   </div>
 </section>
 
-<section class="story-band">
+
+<section class="section-alt">
   <div class="container">
-    <span class="kicker reveal" data-bind="story_kicker">The Journey</span>
-    <h2 class="reveal"><span data-bind="story_h1">3 Years of NEET. 592 Marks.</span><br><span class="flame" data-bind="story_h2">Then We Chose to Build Instead.</span></h2>
-    <div class="story-stats reveal reveal-d1">
-      <div class="story-stat"><b>3</b><span>Years of NEET grind</span></div>
-      <div class="story-stat"><b>0</b><span>Degrees required</span></div>
-      <div class="story-stat"><b>4.1x</b><span>ROAS built instead</span></div>
+    <div class="section-head reveal">
+      <span class="kicker">Team</span>
+      <h2>The People Behind <span class="accent">the Curve</span></h2>
     </div>
-    <p class="reveal reveal-d2" data-bind="story_p1"></p>
-    <p class="reveal reveal-d2" data-bind="story_p2"></p>
-    <span class="story-funny reveal reveal-d3" data-bind="story_funny"></span>
+    <div class="founders-grid">
+      <div class="card team-card reveal" data-tilt>
+        <div class="team-photo">SM<img src="assets/img/sahin.jpg" alt="Sahin Molla" loading="lazy" onerror="this.remove()"></div>
+        <h4 data-bind="founder_name">Sahin Molla</h4>
+        <div class="team-role" data-bind="founder_title">Founder &middot; Full-Stack Developer &amp; Growth Strategist</div>
+        <p data-bind="founder_bio"></p>
+        <div class="social-row" style="margin-top:16px">
+          <a data-social="fb" href="#" title="Facebook"><svg class="ic" aria-hidden="true"><use href="#i-fb"/></svg></a>
+          <a data-social="insta" href="#" title="Instagram"><svg class="ic" aria-hidden="true"><use href="#i-ig"/></svg></a>
+        </div>
+      </div>
+      <div class="card team-card reveal reveal-d1" data-tilt>
+        <div class="team-photo" style="background:linear-gradient(135deg,#1A3A6B,#00D4FF)">AA<img src="assets/img/team/ashif.jpg" alt="Ashif Akhon" loading="lazy" onerror="this.remove()"></div>
+        <h4 data-bind="cofounder_name">Ashif Akhon</h4>
+        <div class="team-role" data-bind="cofounder_title">Co-Founder &middot; Operations &amp; Client Success</div>
+        <p data-bind="cofounder_bio"></p>
+      </div>
+    </div>
+    <div class="member-grid" data-team></div>
+    <div class="team-count-band reveal"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg><span><b data-bind="team_count">20+</b> <span data-bind="team_count_label">specialists across marketing, video, dev, design &amp; e-commerce</span></span></div>
+    <p class="team-note reveal" data-bind="team_note"></p>
   </div>
 </section>
+
 
 <section>
   <div class="container">
@@ -457,7 +497,7 @@
       <button class="btn btn-primary btn-pulse btn-lg game-start"><svg class="ic" aria-hidden="true"><use href="#i-gamepad"/></svg> <span data-bind="game_btn">Start Catching</span></button>
       <div class="game-end">
         <div class="game-end-score">0</div>
-        <h4><span data-bind="game_end_h">Not bad at all!</span> <span style="color:var(--mid);font-size:14px">(leads caught: <span class="game-end-score" style="font-size:14px;display:inline;color:var(--green)">0</span>)</span></h4>
+        <h4><span data-bind="game_end_h">Not bad at all!</span></h4>
         <p data-bind="game_end_p"></p>
         <form class="game-form">
           <input type="text" name="name" placeholder="Your name" required>
@@ -515,38 +555,8 @@
   </div>
 </section>
 
+
 <section>
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="kicker">Team</span>
-      <h2>The People Behind <span class="accent">the Curve</span></h2>
-    </div>
-    <div class="founders-grid">
-      <div class="card team-card reveal" data-tilt>
-        <div class="team-photo">SM<img src="assets/img/sahin.jpg" alt="Sahin Molla" loading="lazy" onerror="this.remove()"></div>
-        <h4 data-bind="founder_name">Sahin Molla</h4>
-        <div class="team-role" data-bind="founder_title">Founder &middot; Full-Stack Developer &amp; Growth Strategist</div>
-        <p data-bind="founder_bio"></p>
-        <div class="social-row" style="margin-top:16px">
-          <a data-social="fb" href="#" title="Facebook"><svg class="ic" aria-hidden="true"><use href="#i-fb"/></svg></a>
-          <a data-social="insta" href="#" title="Instagram"><svg class="ic" aria-hidden="true"><use href="#i-ig"/></svg></a>
-        </div>
-      </div>
-      <div class="card team-card reveal reveal-d1" data-tilt>
-        <div class="team-photo" style="background:linear-gradient(135deg,#1A3A6B,#00D4FF)">AA<img src="assets/img/team/ashif.jpg" alt="Ashif Akhon" loading="lazy" onerror="this.remove()"></div>
-        <h4 data-bind="cofounder_name">Ashif Akhon</h4>
-        <div class="team-role" data-bind="cofounder_title">Co-Founder &middot; Operations &amp; Client Success</div>
-        <p data-bind="cofounder_bio"></p>
-      </div>
-    </div>
-    <div class="member-grid" data-team></div>
-    <div class="team-count-band reveal"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg><span><b data-bind="team_count">20+</b> <span data-bind="team_count_label">specialists across marketing, video, dev, design &amp; e-commerce</span></span></div>
-    <p class="team-note reveal" data-bind="team_note"></p>
-  </div>
-</section>
-
-
-<section class="section-alt">
   <div class="container">
     <div class="section-head reveal">
       <span class="kicker">FAQ</span>
