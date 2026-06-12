@@ -335,12 +335,14 @@
     wall.innerHTML = '<div class="marquee-track clients-track">' + html + html + '</div>';
   });
 
-  /* ============ TOOL BUBBLE CLOUD — floats like water, scatters from cursor ============ */
+  /* ============ TOOL BUBBLES — float around the hero stat cards,
+     small as logos, scatter from the cursor like water ============ */
   (function () {
-    var field = document.querySelector('.bubble-field');
+    var field = document.querySelector('.hero-bubbles');
     if (!field) return;
+    var heroSec = document.querySelector('.hero');
     var tools = (C.tools_list || '').split(',').map(function (t) { return t.trim(); }).filter(Boolean);
-    var maxBubbles = window.innerWidth < 700 ? 10 : 16;
+    var maxBubbles = window.innerWidth < 700 ? 9 : 15;
     tools = tools.slice(0, maxBubbles);
     var W = field.clientWidth, H = field.clientHeight;
     var mouse = { x: -9999, y: -9999 };
@@ -348,20 +350,21 @@
 
     tools.forEach(function (t, i) {
       var el = document.createElement('div');
-      el.className = 'bubble';
-      var r = 30 + Math.random() * 16; /* radius 30–46 */
-      if (window.innerWidth < 700) r = 26 + Math.random() * 10;
+      el.className = 'bubble bubble-sm';
+      el.title = t;
+      var r = 16 + Math.random() * 7; /* small — logo-sized (radius 16–23px) */
+      if (window.innerWidth < 700) r = 14 + Math.random() * 5;
       el.style.width = el.style.height = (r * 2) + 'px';
-      el.innerHTML = toolIconHTML(t) + '<small>' + escapeHTML(t) + '</small>';
+      el.innerHTML = toolIconHTML(t);
       field.appendChild(el);
       armImgFallbacks(el);
-      /* spread starting positions: ring + center */
+      /* start scattered around the edges & gaps between cards */
       var angle = (i / tools.length) * Math.PI * 2;
-      var dist = (i % 3 === 0) ? 0.18 : 0.38;
+      var dist = 0.30 + (i % 3) * 0.09;
       bubbles.push({
         el: el, r: r,
-        x: W / 2 + Math.cos(angle) * W * dist + (Math.random() - 0.5) * 40,
-        y: H / 2 + Math.sin(angle) * H * dist + (Math.random() - 0.5) * 40,
+        x: W / 2 + Math.cos(angle) * W * dist + (Math.random() - 0.5) * 30,
+        y: H / 2 + Math.sin(angle) * H * dist + (Math.random() - 0.5) * 30,
         vx: (Math.random() - 0.5) * 0.4,
         vy: (Math.random() - 0.5) * 0.4,
         phase: Math.random() * Math.PI * 2
@@ -371,20 +374,20 @@
     function resize() { W = field.clientWidth; H = field.clientHeight; }
     window.addEventListener('resize', resize);
 
-    field.addEventListener('mousemove', function (e) {
+    /* track the cursor across the whole hero so bubbles react near the cards */
+    function setMouse(cx, cy) {
       var rect = field.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
-    });
-    field.addEventListener('mouseleave', function () { mouse.x = -9999; mouse.y = -9999; });
-    field.addEventListener('touchmove', function (e) {
-      var rect = field.getBoundingClientRect();
-      mouse.x = e.touches[0].clientX - rect.left;
-      mouse.y = e.touches[0].clientY - rect.top;
-    }, { passive: true });
-    field.addEventListener('touchend', function () { mouse.x = -9999; mouse.y = -9999; });
+      mouse.x = cx - rect.left;
+      mouse.y = cy - rect.top;
+    }
+    if (heroSec) {
+      heroSec.addEventListener('mousemove', function (e) { setMouse(e.clientX, e.clientY); });
+      heroSec.addEventListener('mouseleave', function () { mouse.x = -9999; mouse.y = -9999; });
+      heroSec.addEventListener('touchmove', function (e) { setMouse(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
+      heroSec.addEventListener('touchend', function () { mouse.x = -9999; mouse.y = -9999; });
+    }
 
-    var visible = false;
+    var visible = true;
     new IntersectionObserver(function (en) { visible = en[0].isIntersecting; }, { threshold: 0 }).observe(field);
     var t = 0;
     function frame() {
@@ -393,24 +396,21 @@
       t += 0.016;
       for (var i = 0; i < bubbles.length; i++) {
         var b = bubbles[i];
-        /* gentle water drift */
-        b.vx += Math.cos(t * 0.7 + b.phase) * 0.012;
-        b.vy += Math.sin(t * 0.9 + b.phase) * 0.012;
-        /* cursor repulsion — scatter like water */
+        b.vx += Math.cos(t * 0.7 + b.phase) * 0.010;
+        b.vy += Math.sin(t * 0.9 + b.phase) * 0.010;
         var dx = b.x - mouse.x, dy = b.y - mouse.y;
         var d2 = dx * dx + dy * dy;
-        var rad = 150;
+        var rad = 120;
         if (d2 < rad * rad && d2 > 0.01) {
           var d = Math.sqrt(d2);
-          var f = (1 - d / rad) * 2.6;
+          var f = (1 - d / rad) * 2.2;
           b.vx += (dx / d) * f;
           b.vy += (dy / d) * f;
         }
-        /* bubble-bubble soft separation */
         for (var j = i + 1; j < bubbles.length; j++) {
           var o = bubbles[j];
           var ox = b.x - o.x, oy = b.y - o.y;
-          var min = b.r + o.r + 6;
+          var min = b.r + o.r + 4;
           var od2 = ox * ox + oy * oy;
           if (od2 < min * min && od2 > 0.01) {
             var od = Math.sqrt(od2);
@@ -419,7 +419,6 @@
             o.vx -= ox * push; o.vy -= oy * push;
           }
         }
-        /* friction + walls */
         b.vx *= 0.94; b.vy *= 0.94;
         b.x += b.vx; b.y += b.vy;
         if (b.x < b.r) { b.x = b.r; b.vx = Math.abs(b.vx); }

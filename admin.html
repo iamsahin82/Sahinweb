@@ -174,7 +174,6 @@ tr:hover td { background:rgba(30,111,255,.05); }
     <p style="font-size:13px;color:var(--mid);margin:6px 0 24px">Enter your passcode to manage the site</p>
     <input type="password" id="passInput" placeholder="Passcode" style="margin-bottom:16px" autofocus>
     <button class="btn" style="width:100%" onclick="login()">Unlock Dashboard</button>
-    <p id="passHint" style="margin-top:16px;font-size:12px;color:var(--mid)">Default passcode: <b style="color:var(--gold)">shahin2026</b> (change it in Settings)</p>
   </div>
 </div>
 
@@ -295,7 +294,6 @@ tr:hover td { background:rgba(30,111,255,.05); }
 
   /* ---- auth ---- */
   function pass() { return localStorage.getItem('sw_admin_pass') || 'shahin2026'; }
-  if (localStorage.getItem('sw_admin_pass')) { var h = $('#passHint'); if (h) h.style.display = 'none'; }
   window.login = function () {
     if ($('#passInput').value === pass()) { sessionStorage.setItem('sw_admin_ok', '1'); showApp(); }
     else { $('#passInput').style.borderColor = 'var(--red)'; $('#passInput').value = ''; $('#passInput').placeholder = 'Wrong passcode — try again'; }

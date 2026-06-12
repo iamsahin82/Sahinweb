@@ -993,6 +993,12 @@ section, .trust-bar, .marquee-ticker, .clients-strip, .tools-strip, footer { pos
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 
+/* Small logo-bubbles floating around the hero stat cards */
+.hero-bubbles { position: absolute; inset: -20px; z-index: 0; pointer-events: none; }
+.bubble-sm { box-shadow: 0 6px 16px rgba(0,0,0,.3), inset 0 0 8px rgba(0,212,255,.08); }
+.bubble-sm img, .bubble-sm .ic { width: 46%; height: 46%; }
+.hero-visual .float-card { z-index: 2; }
+
 /* ---------- Mini video popup (bottom-right, small) ---------- */
 .video-mini {
   position: fixed; right: 18px; bottom: 90px; z-index: 95;

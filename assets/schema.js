@@ -222,7 +222,6 @@ window.SW_SCHEMA = [
     hint: "The reverse-scrolling strip of tools with logos. Comma-separated list.",
     fields: [
       { key: "tools_head", label: "Strip Title", def: "OUR ARSENAL" },
-      { key: "bub_sub", label: "Bubble Cloud Subtext", def: "Move your cursor through them — they scatter like water. These are the tools behind every number on this page.", type: "textarea" },
       { key: "tools_list", label: "Tools (comma separated)", def: "Premiere Pro, After Effects, Video Editing, Script Writing, React, Next.js, Node.js, PostgreSQL, Supabase, Shopify, WordPress, SEO, Meta Ads, Google Ads, Claude AI, ChatGPT, Gemini, Canva, Figma, GitHub", type: "textarea" },
       { key: "tools_funny", label: "Light Caption", def: "We don't list these to show off. Okay — maybe a little." }
     ]
