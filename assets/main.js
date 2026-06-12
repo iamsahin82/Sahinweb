@@ -214,6 +214,7 @@
   document.querySelectorAll('.char-reveal').forEach(function (el) {
     var text = el.textContent;
     el.textContent = '';
+    el.classList.add('split'); /* enables per-char gradient (Safari-safe) */
     el.setAttribute('aria-label', text);
     var i = 0;
     text.split(' ').forEach(function (word, wi) {
@@ -313,10 +314,10 @@
     });
   });
 
-  /* ============ CLIENTS WALL (text or logo image) ============ */
+  /* ============ CLIENTS — scrolling marquee (text or logo image) ============ */
   document.querySelectorAll('[data-clients]').forEach(function (wall) {
     var names = (C.clients_list || '').split(',').map(function (t) { return t.trim(); }).filter(Boolean);
-    wall.innerHTML = names.map(function (n, i) {
+    var html = names.map(function (n, i) {
       var parts = n.split('|');
       var name = parts[0].trim();
       var img = null;
@@ -329,7 +330,107 @@
       }
       return '<span class="client-logo c-style-' + (i % 4) + '">' + escapeHTML(name) + '</span>';
     }).join('');
+    /* wrap in a marquee track for gentle left-right motion */
+    wall.classList.add('marquee');
+    wall.innerHTML = '<div class="marquee-track clients-track">' + html + html + '</div>';
   });
+
+  /* ============ TOOL BUBBLE CLOUD — floats like water, scatters from cursor ============ */
+  (function () {
+    var field = document.querySelector('.bubble-field');
+    if (!field) return;
+    var tools = (C.tools_list || '').split(',').map(function (t) { return t.trim(); }).filter(Boolean);
+    var maxBubbles = window.innerWidth < 700 ? 10 : 16;
+    tools = tools.slice(0, maxBubbles);
+    var W = field.clientWidth, H = field.clientHeight;
+    var mouse = { x: -9999, y: -9999 };
+    var bubbles = [];
+
+    tools.forEach(function (t, i) {
+      var el = document.createElement('div');
+      el.className = 'bubble';
+      var r = 30 + Math.random() * 16; /* radius 30–46 */
+      if (window.innerWidth < 700) r = 26 + Math.random() * 10;
+      el.style.width = el.style.height = (r * 2) + 'px';
+      el.innerHTML = toolIconHTML(t) + '<small>' + escapeHTML(t) + '</small>';
+      field.appendChild(el);
+      armImgFallbacks(el);
+      /* spread starting positions: ring + center */
+      var angle = (i / tools.length) * Math.PI * 2;
+      var dist = (i % 3 === 0) ? 0.18 : 0.38;
+      bubbles.push({
+        el: el, r: r,
+        x: W / 2 + Math.cos(angle) * W * dist + (Math.random() - 0.5) * 40,
+        y: H / 2 + Math.sin(angle) * H * dist + (Math.random() - 0.5) * 40,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+        phase: Math.random() * Math.PI * 2
+      });
+    });
+
+    function resize() { W = field.clientWidth; H = field.clientHeight; }
+    window.addEventListener('resize', resize);
+
+    field.addEventListener('mousemove', function (e) {
+      var rect = field.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+    });
+    field.addEventListener('mouseleave', function () { mouse.x = -9999; mouse.y = -9999; });
+    field.addEventListener('touchmove', function (e) {
+      var rect = field.getBoundingClientRect();
+      mouse.x = e.touches[0].clientX - rect.left;
+      mouse.y = e.touches[0].clientY - rect.top;
+    }, { passive: true });
+    field.addEventListener('touchend', function () { mouse.x = -9999; mouse.y = -9999; });
+
+    var visible = false;
+    new IntersectionObserver(function (en) { visible = en[0].isIntersecting; }, { threshold: 0 }).observe(field);
+    var t = 0;
+    function frame() {
+      requestAnimationFrame(frame);
+      if (!visible) return;
+      t += 0.016;
+      for (var i = 0; i < bubbles.length; i++) {
+        var b = bubbles[i];
+        /* gentle water drift */
+        b.vx += Math.cos(t * 0.7 + b.phase) * 0.012;
+        b.vy += Math.sin(t * 0.9 + b.phase) * 0.012;
+        /* cursor repulsion — scatter like water */
+        var dx = b.x - mouse.x, dy = b.y - mouse.y;
+        var d2 = dx * dx + dy * dy;
+        var rad = 150;
+        if (d2 < rad * rad && d2 > 0.01) {
+          var d = Math.sqrt(d2);
+          var f = (1 - d / rad) * 2.6;
+          b.vx += (dx / d) * f;
+          b.vy += (dy / d) * f;
+        }
+        /* bubble-bubble soft separation */
+        for (var j = i + 1; j < bubbles.length; j++) {
+          var o = bubbles[j];
+          var ox = b.x - o.x, oy = b.y - o.y;
+          var min = b.r + o.r + 6;
+          var od2 = ox * ox + oy * oy;
+          if (od2 < min * min && od2 > 0.01) {
+            var od = Math.sqrt(od2);
+            var push = (min - od) / od * 0.06;
+            b.vx += ox * push; b.vy += oy * push;
+            o.vx -= ox * push; o.vy -= oy * push;
+          }
+        }
+        /* friction + walls */
+        b.vx *= 0.94; b.vy *= 0.94;
+        b.x += b.vx; b.y += b.vy;
+        if (b.x < b.r) { b.x = b.r; b.vx = Math.abs(b.vx); }
+        if (b.x > W - b.r) { b.x = W - b.r; b.vx = -Math.abs(b.vx); }
+        if (b.y < b.r) { b.y = b.r; b.vy = Math.abs(b.vy); }
+        if (b.y > H - b.r) { b.y = H - b.r; b.vy = -Math.abs(b.vy); }
+        b.el.style.transform = 'translate(' + (b.x - b.r) + 'px,' + (b.y - b.r) + 'px)';
+      }
+    }
+    frame();
+  })();
 
   /* ============ TEAM RENDERER ============ */
   document.querySelectorAll('[data-team]').forEach(function (grid) {
@@ -560,6 +661,7 @@
     try { leads = JSON.parse(localStorage.getItem('sw_leads') || '[]'); } catch (err) {}
     leads.unshift(lead);
     localStorage.setItem('sw_leads', JSON.stringify(leads));
+    if (window.SW_TRACK) window.SW_TRACK('lead', { src: extra.source || 'form' });
   }
   window.SW_SAVE_LEAD = saveLead;
 
@@ -650,14 +752,15 @@
     }
   })();
 
-  /* ============ VIDEO POPUP (after 5s, if Ad-Duha.mp4 exists) ============ */
+  /* ============ MINI VIDEO POPUP (small card, bottom-right, after 5s) ============
+     Autoplay is muted (browsers block sound autoplay) — tap the video for sound. */
   (function () {
     if ((C.video_on || 'yes').toLowerCase() !== 'yes') return;
     if (sessionStorage.getItem('sw_vid_shown')) return;
     if (!document.querySelector('.hero') && !document.querySelector('.page-hero')) return;
     setTimeout(function () {
       var test = document.createElement('video');
-      var sources = ['Ad-Duha.mp4', 'assets/img/Ad-Duha.mp4'];
+      var sources = ['Ad-Duha.mp4', 'assets/img/Ad-Duha.mp4', 'assets/video/Ad-Duha.mp4'];
       var idx = 0;
       function tryNext() {
         if (idx >= sources.length) return; /* no video — stay silent */
@@ -666,29 +769,83 @@
       test.addEventListener('error', tryNext);
       test.addEventListener('loadeddata', function () {
         sessionStorage.setItem('sw_vid_shown', '1');
-        var modal = document.createElement('div');
-        modal.className = 'video-modal';
-        modal.innerHTML =
-          '<div class="video-box">' +
+        var mini = document.createElement('div');
+        mini.className = 'video-mini';
+        mini.innerHTML =
           '<button class="video-close" aria-label="Close">' + icon('x') + '</button>' +
-          '<video src="' + test.src + '" controls autoplay playsinline></video>' +
-          '<div class="video-meta"><b>' + escapeHTML(C.video_title || '') + '</b><p>' + escapeHTML(C.video_sub || '') + '</p>' +
-          '<a href="book-call.html" class="btn btn-primary" style="margin-top:10px">' + escapeHTML(C.cta_btn || 'Book a Free Call') + '</a></div>' +
-          '</div>';
-        document.body.appendChild(modal);
-        requestAnimationFrame(function () { modal.classList.add('open'); });
-        function close() {
-          modal.classList.remove('open');
-          var v = modal.querySelector('video');
-          if (v) v.pause();
-          setTimeout(function () { modal.remove(); }, 350);
-        }
-        modal.querySelector('.video-close').addEventListener('click', close);
-        modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
+          '<video src="' + test.src + '" muted autoplay loop playsinline></video>' +
+          '<div class="vm-meta"><b>' + escapeHTML(C.video_title || '') + '</b>' +
+          '<span class="vm-sound">' + icon('play') + ' Tap for sound</span></div>';
+        document.body.appendChild(mini);
+        requestAnimationFrame(function () { mini.classList.add('open'); });
+        var v = mini.querySelector('video');
+        v.play().catch(function () {}); /* belt & braces */
+        v.addEventListener('click', function () {
+          v.muted = !v.muted;
+          var s = mini.querySelector('.vm-sound');
+          if (s) s.textContent = v.muted ? 'Tap for sound' : 'Sound on';
+        });
+        mini.querySelector('.video-close').addEventListener('click', function (e) {
+          e.stopPropagation();
+          mini.classList.remove('open');
+          v.pause();
+          setTimeout(function () { mini.remove(); }, 350);
+        });
       });
       test.preload = 'auto';
       tryNext();
     }, 5000);
+  })();
+
+  /* ============ FIRST-PARTY ANALYTICS TRACKER ============
+     Stores events in this browser's localStorage (viewable in Admin > Dashboard).
+     For cross-visitor analytics, add a Google Analytics ID in Admin > Settings. */
+  (function () {
+    function track(type, extra) {
+      try {
+        var stats = JSON.parse(localStorage.getItem('sw_stats') || '[]');
+        var ev = { t: type, d: new Date().toISOString().slice(0, 10), ts: Date.now(), p: location.pathname.split('/').pop() || 'index.html' };
+        if (extra) for (var k in extra) ev[k] = extra[k];
+        stats.push(ev);
+        if (stats.length > 4000) stats = stats.slice(-4000);
+        localStorage.setItem('sw_stats', JSON.stringify(stats));
+      } catch (e) {}
+    }
+    window.SW_TRACK = track;
+    /* page view + device class */
+    track('view', { dev: window.innerWidth < 700 ? 'mobile' : (window.innerWidth < 1100 ? 'tablet' : 'desktop'), ref: document.referrer ? 1 : 0 });
+    /* CTA clicks */
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest('.btn-primary');
+      if (btn) track('cta', { label: (btn.textContent || '').trim().slice(0, 40) });
+      var wa = e.target.closest('[data-wa-link]');
+      if (wa) track('whatsapp');
+    });
+    /* game plays */
+    var gs = document.querySelector('.game-start');
+    if (gs) gs.addEventListener('click', function () { track('game'); });
+    /* scroll depth (75%) once */
+    var deep = false;
+    window.addEventListener('scroll', function () {
+      if (deep) return;
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      if (h > 0 && window.scrollY / h > 0.75) { deep = true; track('scroll75'); }
+    }, { passive: true });
+  })();
+
+  /* ============ GOOGLE ANALYTICS (optional — set ID in Admin > Settings) ============ */
+  (function () {
+    var ga = (C.ga_id || '').trim();
+    if (!/^G-[A-Z0-9]+$/i.test(ga)) return;
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + ga;
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', ga);
   })();
 
   /* ============ FOOTER YEAR ============ */

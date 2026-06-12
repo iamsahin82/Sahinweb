@@ -3,118 +3,163 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin Panel — Shahin Web</title>
+<title>Admin — Shahin Web</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='11' fill='%230A0F1E'/%3E%3Cpath d='M8 38 C20 38 17 24 24 23 C31 22 28 10 40 9' fill='none' stroke='%2300D4FF' stroke-width='5' stroke-linecap='round'/%3E%3Ccircle cx='8' cy='38' r='3.5' fill='%2300C896'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --abyss:#0A0F1E; --navy:#0D1B3E; --blue:#1E6FFF; --cyan:#00D4FF;
-  --gold:#FFB800; --green:#00C896; --orange:#FF6B2B;
-  --light:#C8D2E0; --mid:#8494A9;
+  --abyss:#0A0F1E; --navy:#0D1B3E; --panel:#101C38; --blue:#1E6FFF; --cyan:#00D4FF;
+  --gold:#FFB800; --green:#00C896; --orange:#FF6B2B; --red:#e23a3a;
+  --light:#C8D2E0; --mid:#8494A9; --line:rgba(30,111,255,.18);
 }
 * { margin:0; padding:0; box-sizing:border-box; }
-body { background:var(--abyss); color:var(--light); font-family:'Inter',sans-serif; font-size:15px; min-height:100vh; }
+body { background:var(--abyss); color:var(--light); font-family:'Inter',sans-serif; font-size:14.5px; min-height:100vh; }
 h1,h2,h3 { font-family:'Montserrat',sans-serif; color:#fff; }
+button { font-family:inherit; }
 
-/* Login */
+.aic { width:18px; height:18px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; flex:none; }
+
+/* ---------- Login ---------- */
 .login-wrap { min-height:100vh; display:grid; place-items:center; background:radial-gradient(ellipse at 50% 0%, #1A3A6B 0%, #0A0F1E 70%); }
 .login-card { width:min(400px,92%); background:rgba(13,27,62,.7); backdrop-filter:blur(20px); border:1px solid rgba(30,111,255,.35); border-radius:20px; padding:42px; text-align:center; box-shadow:0 30px 80px rgba(0,0,0,.5); }
-.logo-mark { width:52px; height:52px; margin:0 auto 18px; border-radius:14px; background:linear-gradient(135deg,#1E6FFF,#00D4FF); display:grid; place-items:center; font-size:26px; color:#fff; font-weight:800; box-shadow:0 0 24px rgba(30,111,255,.6); font-family:'Montserrat',sans-serif; }
-.login-card h2 { margin-bottom:6px; }
-.login-card p { font-size:13.5px; color:var(--mid); margin-bottom:26px; }
+.logo-mark { width:52px; height:52px; margin:0 auto 18px; border-radius:14px; background:rgba(30,111,255,.12); border:1px solid rgba(0,212,255,.35); display:grid; place-items:center; box-shadow:0 0 24px rgba(30,111,255,.4); }
+.logo-mark svg { width:30px; height:30px; }
 input, textarea, select {
   width:100%; background:#0D1730; color:#fff; border:1px solid rgba(30,111,255,.25);
-  border-radius:10px; padding:13px 15px; font-family:'Inter',sans-serif; font-size:15px;
+  border-radius:10px; padding:12px 14px; font-family:'Inter',sans-serif; font-size:14.5px;
 }
 input:focus, textarea:focus { outline:none; border-color:var(--blue); box-shadow:0 0 14px rgba(30,111,255,.3); }
 .btn {
   display:inline-flex; align-items:center; justify-content:center; gap:8px;
-  font-family:'Montserrat',sans-serif; font-weight:700; font-size:14.5px;
-  padding:13px 26px; border-radius:11px; border:none; cursor:pointer;
+  font-family:'Montserrat',sans-serif; font-weight:700; font-size:13.5px;
+  padding:12px 22px; border-radius:11px; border:none; cursor:pointer;
   background:linear-gradient(135deg,#1E6FFF,#00D4FF); color:#fff;
-  box-shadow:0 0 18px rgba(30,111,255,.45); transition:transform .25s, box-shadow .25s;
+  box-shadow:0 0 18px rgba(30,111,255,.4); transition:transform .25s, box-shadow .25s;
   text-decoration:none;
 }
-.btn:hover { transform:translateY(-2px); box-shadow:0 0 26px rgba(30,111,255,.65); }
-.btn-ghost { background:transparent; border:1.5px solid rgba(200,210,224,.3); box-shadow:none; color:var(--light); }
+.btn:hover { transform:translateY(-2px); box-shadow:0 0 26px rgba(30,111,255,.6); }
+.btn-ghost { background:transparent; border:1.5px solid rgba(200,210,224,.28); box-shadow:none; color:var(--light); }
 .btn-ghost:hover { border-color:var(--cyan); color:var(--cyan); box-shadow:none; }
-.btn-danger { background:linear-gradient(135deg,#e23a3a,#FF6B2B); box-shadow:0 0 16px rgba(255,107,43,.35); }
-.btn-sm { padding:8px 14px; font-size:12.5px; border-radius:8px; }
+.btn-danger { background:linear-gradient(135deg,#e23a3a,#FF6B2B); box-shadow:0 0 16px rgba(255,107,43,.3); }
+.btn-sm { padding:7px 13px; font-size:12px; border-radius:8px; }
 
-/* Layout */
-.app { display:none; }
-.topbar {
-  position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between;
-  padding:14px 26px; background:rgba(10,15,30,.85); backdrop-filter:blur(16px);
-  border-bottom:1px solid rgba(30,111,255,.25);
+/* ---------- App shell ---------- */
+.app { display:none; min-height:100vh; }
+.shell { display:grid; grid-template-columns:240px 1fr; min-height:100vh; }
+.sidebar {
+  background:linear-gradient(180deg, #0C1730, #0A0F1E);
+  border-right:1px solid var(--line);
+  padding:22px 14px; position:sticky; top:0; height:100vh;
+  display:flex; flex-direction:column; gap:6px;
 }
-.topbar .brand { display:flex; align-items:center; gap:12px; font-family:'Montserrat',sans-serif; font-weight:800; letter-spacing:1px; color:#fff; }
-.topbar .brand .logo-mark { width:34px; height:34px; margin:0; font-size:17px; border-radius:9px; }
-.topbar .actions { display:flex; gap:10px; align-items:center; }
-.main { width:min(1100px,94%); margin:30px auto 60px; }
+.side-brand { display:flex; align-items:center; gap:11px; padding:4px 10px 20px; font-family:'Montserrat',sans-serif; font-weight:800; letter-spacing:1px; color:#fff; font-size:15px; }
+.side-brand .logo-mark { width:36px; height:36px; margin:0; border-radius:10px; }
+.side-brand .logo-mark svg { width:22px; height:22px; }
+.side-brand em { font-style:normal; color:var(--cyan); }
+.nav-item {
+  display:flex; align-items:center; gap:12px; width:100%;
+  padding:12px 14px; border-radius:12px; border:none; background:none; cursor:pointer;
+  color:var(--mid); font-size:14px; font-weight:600; text-align:left;
+  transition:all .2s;
+}
+.nav-item:hover { color:#fff; background:rgba(30,111,255,.08); }
+.nav-item.active { color:#fff; background:linear-gradient(90deg, rgba(30,111,255,.22), rgba(0,212,255,.08)); box-shadow:inset 2px 0 0 var(--cyan); }
+.nav-item .badge { margin-left:auto; background:var(--orange); color:#fff; font-size:10.5px; font-weight:700; border-radius:100px; padding:2px 8px; }
+.side-foot { margin-top:auto; display:flex; flex-direction:column; gap:8px; }
+.side-note { font-size:11px; color:var(--mid); padding:0 10px; line-height:1.5; }
 
-.tabs { display:flex; gap:8px; margin-bottom:28px; flex-wrap:wrap; }
-.tab {
-  font-family:'Montserrat',sans-serif; font-weight:700; font-size:14px;
-  padding:11px 22px; border-radius:100px; cursor:pointer; border:1px solid rgba(255,255,255,.12);
-  background:transparent; color:var(--mid); transition:all .25s;
-}
-.tab.active { background:linear-gradient(135deg,#1E6FFF,#00D4FF); color:#fff; border-color:transparent; box-shadow:0 0 18px rgba(30,111,255,.4); }
-.tab .badge { background:var(--orange); color:#fff; font-size:11px; border-radius:100px; padding:2px 8px; margin-left:6px; }
+.main { padding:26px 30px 80px; min-width:0; }
+.main-head { display:flex; align-items:center; justify-content:space-between; gap:14px; margin-bottom:24px; flex-wrap:wrap; }
+.main-head h2 { font-size:21px; }
+.main-head p { font-size:13px; color:var(--mid); margin-top:3px; }
 
 .panel { display:none; }
-.panel.active { display:block; animation:fadeUp .4s ease; }
-@keyframes fadeUp { from { opacity:0; transform:translateY(14px);} }
+.panel.active { display:block; animation:fadeUp .35s ease; }
+@keyframes fadeUp { from { opacity:0; transform:translateY(12px);} }
 
-.section-card {
-  background:#101C38; border:1px solid rgba(30,111,255,.2); border-radius:18px;
-  padding:28px; margin-bottom:22px;
+/* ---------- Cards / grids ---------- */
+.kpi-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:22px; }
+.kpi {
+  background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:20px;
+  position:relative; overflow:hidden;
 }
-.section-card h3 { font-size:16px; margin-bottom:4px; }
-.section-card .hint { font-size:13px; color:var(--mid); margin-bottom:20px; }
-.fgrid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.kpi::after { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,#1E6FFF,#00D4FF); opacity:.7; }
+.kpi b { display:block; font-family:'Montserrat',sans-serif; font-weight:800; font-size:30px; color:#fff; text-shadow:0 0 16px rgba(0,212,255,.35); }
+.kpi span { font-size:12px; color:var(--mid); letter-spacing:.4px; }
+.kpi small { display:block; margin-top:6px; font-size:11.5px; color:var(--green); font-weight:600; }
+.dash-grid { display:grid; grid-template-columns:1.6fr 1fr; gap:16px; }
+.section-card { background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:24px; margin-bottom:18px; min-width:0; }
+.section-card h3 { font-size:15px; margin-bottom:4px; }
+.section-card .hint { font-size:12.5px; color:var(--mid); margin-bottom:18px; }
+
+/* charts */
+.bars { display:flex; align-items:flex-end; gap:6px; height:150px; margin-top:18px; }
+.bar { flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; min-width:0; }
+.bar i {
+  width:100%; border-radius:6px 6px 2px 2px; min-height:3px;
+  background:linear-gradient(to top,#1E6FFF,#00D4FF);
+  box-shadow:0 0 10px rgba(30,111,255,.35);
+  transition:height .6s cubic-bezier(.4,0,.2,1);
+}
+.bar small { font-size:9.5px; color:var(--mid); white-space:nowrap; }
+.hl { display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid rgba(255,255,255,.05); font-size:13.5px; }
+.hl:last-child { border:none; }
+.hl b { color:#fff; font-weight:600; }
+.meter { height:7px; border-radius:4px; background:rgba(255,255,255,.06); overflow:hidden; margin-top:6px; }
+.meter i { display:block; height:100%; border-radius:4px; background:linear-gradient(90deg,#1E6FFF,#00D4FF); }
+
+/* content editor */
+.fgrid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
 .fgrid .full { grid-column:1/-1; }
-.f label { display:block; font-size:11.5px; font-weight:600; letter-spacing:1.2px; text-transform:uppercase; color:var(--mid); margin-bottom:7px; }
+.f label { display:block; font-size:11px; font-weight:600; letter-spacing:1.1px; text-transform:uppercase; color:var(--mid); margin-bottom:6px; }
 .f { min-width:0; }
 
 .savebar {
-  position:fixed; bottom:0; left:0; right:0; z-index:60;
-  background:rgba(10,15,30,.92); backdrop-filter:blur(14px);
+  position:fixed; bottom:0; left:240px; right:0; z-index:60;
+  background:rgba(10,15,30,.94); backdrop-filter:blur(14px);
   border-top:1px solid rgba(30,111,255,.3);
-  padding:14px 26px; display:none; align-items:center; justify-content:space-between; gap:14px;
+  padding:13px 30px; display:none; align-items:center; justify-content:space-between; gap:14px;
 }
 .savebar.show { display:flex; }
-.savebar span { font-size:13.5px; color:var(--gold); }
+.savebar span { font-size:13px; color:var(--gold); }
 
-/* Stats overview */
-.ov-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:28px; }
-.ov-card { background:#101C38; border:1px solid rgba(30,111,255,.2); border-radius:16px; padding:22px; }
-.ov-num { font-family:'Montserrat',sans-serif; font-weight:800; font-size:32px; color:#fff; text-shadow:0 0 16px rgba(0,212,255,.4); }
-.ov-label { font-size:12.5px; color:var(--mid); margin-top:4px; }
-
-/* Leads table */
+/* leads table */
 table { width:100%; border-collapse:collapse; }
-th { text-align:left; font-size:11.5px; letter-spacing:1.2px; text-transform:uppercase; color:var(--mid); padding:12px 14px; border-bottom:1px solid rgba(255,255,255,.1); }
-td { padding:14px; font-size:14px; border-bottom:1px solid rgba(255,255,255,.05); vertical-align:top; }
+th { text-align:left; font-size:11px; letter-spacing:1.1px; text-transform:uppercase; color:var(--mid); padding:11px 13px; border-bottom:1px solid rgba(255,255,255,.1); }
+td { padding:13px; font-size:13.5px; border-bottom:1px solid rgba(255,255,255,.05); vertical-align:top; }
 tr:hover td { background:rgba(30,111,255,.05); }
-.lead-msg { color:var(--mid); font-size:13px; max-width:300px; }
-.pill { display:inline-block; font-size:11px; font-weight:700; padding:3px 10px; border-radius:100px; background:rgba(0,200,150,.12); color:var(--green); border:1px solid rgba(0,200,150,.35); }
-.empty { text-align:center; padding:60px 20px; color:var(--mid); }
-.empty .big { font-size:44px; margin-bottom:14px; }
+.lead-msg { color:var(--mid); font-size:12.5px; max-width:300px; }
+.pill { display:inline-block; font-size:10.5px; font-weight:700; padding:3px 10px; border-radius:100px; background:rgba(0,200,150,.12); color:var(--green); border:1px solid rgba(0,200,150,.35); }
+.empty { text-align:center; padding:54px 20px; color:var(--mid); font-size:13.5px; }
 
 .toast {
-  position:fixed; top:80px; right:24px; z-index:100;
+  position:fixed; top:22px; right:24px; z-index:100;
   background:rgba(0,200,150,.12); border:1px solid rgba(0,200,150,.5); color:var(--green);
-  padding:14px 22px; border-radius:12px; font-weight:600; font-size:14px;
+  padding:13px 20px; border-radius:12px; font-weight:600; font-size:13.5px;
   opacity:0; transform:translateY(-10px); transition:all .35s; pointer-events:none;
   backdrop-filter:blur(10px);
 }
 .toast.show { opacity:1; transform:none; }
-.note { font-size:12.5px; color:var(--mid); border-left:3px solid var(--gold); padding:10px 14px; background:rgba(255,184,0,.06); border-radius:0 10px 10px 0; margin-bottom:24px; }
+.note { font-size:12px; color:var(--mid); border-left:3px solid var(--gold); padding:10px 14px; background:rgba(255,184,0,.05); border-radius:0 10px 10px 0; margin-bottom:20px; line-height:1.55; }
 
-@media (max-width:760px) {
-  .fgrid, .ov-grid { grid-template-columns:1fr; }
-  .topbar { padding:12px 16px; }
+/* ---------- Responsive ---------- */
+@media (max-width:900px) {
+  .shell { grid-template-columns:1fr; }
+  .sidebar {
+    position:fixed; bottom:0; top:auto; left:0; right:0; height:auto; z-index:70;
+    flex-direction:row; padding:8px 10px calc(8px + env(safe-area-inset-bottom));
+    border-right:none; border-top:1px solid var(--line);
+    overflow-x:auto; gap:4px;
+  }
+  .side-brand, .side-foot, .side-note { display:none; }
+  .nav-item { flex-direction:column; gap:4px; padding:8px 12px; font-size:10.5px; white-space:nowrap; }
+  .nav-item .badge { margin:0; position:absolute; transform:translate(16px,-6px); }
+  .main { padding:18px 16px 130px; }
+  .savebar { left:0; bottom:64px; padding:11px 16px; }
+  .kpi-grid { grid-template-columns:1fr 1fr; }
+  .dash-grid, .fgrid { grid-template-columns:1fr; }
   th:nth-child(4), td:nth-child(4) { display:none; }
 }
 </style>
@@ -124,9 +169,9 @@ tr:hover td { background:rgba(30,111,255,.05); }
 <!-- LOGIN -->
 <div class="login-wrap" id="loginView">
   <div class="login-card">
-    <div class="logo-mark">⟋</div>
+    <div class="logo-mark"><svg viewBox="0 0 48 48"><path d="M5 41 C18 41 15 25 24 24 C33 23 30 8 43 7" fill="none" stroke="#00D4FF" stroke-width="5" stroke-linecap="round"/><circle cx="5" cy="41" r="3.5" fill="#00C896"/></svg></div>
     <h2>Shahin Web Admin</h2>
-    <p>Enter your passcode to manage the site</p>
+    <p style="font-size:13px;color:var(--mid);margin:6px 0 24px">Enter your passcode to manage the site</p>
     <input type="password" id="passInput" placeholder="Passcode" style="margin-bottom:16px" autofocus>
     <button class="btn" style="width:100%" onclick="login()">Unlock Dashboard</button>
     <p id="passHint" style="margin-top:16px;font-size:12px;color:var(--mid)">Default passcode: <b style="color:var(--gold)">shahin2026</b> (change it in Settings)</p>
@@ -135,52 +180,72 @@ tr:hover td { background:rgba(30,111,255,.05); }
 
 <!-- APP -->
 <div class="app" id="appView">
-  <div class="topbar">
-    <div class="brand"><span class="logo-mark">⟋</span>SHAHIN WEB — ADMIN</div>
-    <div class="actions">
+<div class="shell">
+  <aside class="sidebar">
+    <div class="side-brand"><span class="logo-mark"><svg viewBox="0 0 48 48"><path d="M5 41 C18 41 15 25 24 24 C33 23 30 8 43 7" fill="none" stroke="#00D4FF" stroke-width="5" stroke-linecap="round"/><circle cx="5" cy="41" r="3.5" fill="#00C896"/></svg></span>SHAHIN <em>WEB</em></div>
+    <button class="nav-item active" data-panel="dash"><svg class="aic" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg>Dashboard</button>
+    <button class="nav-item" data-panel="leads"><svg class="aic" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>Leads <span class="badge" id="leadBadge" style="display:none">0</span></button>
+    <button class="nav-item" data-panel="content"><svg class="aic" viewBox="0 0 24 24"><path d="M17 3a2.8 2.8 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5z"/></svg>Content</button>
+    <button class="nav-item" data-panel="settings"><svg class="aic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1 1.55V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1-1.55 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.55-1H3a2 2 0 1 1 0-4h.09a1.7 1.7 0 0 0 1.55-1 1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34h0a1.7 1.7 0 0 0 1-1.55V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1 1.55h0a1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87v0a1.7 1.7 0 0 0 1.55 1H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.55 1z"/></svg>Settings</button>
+    <div class="side-foot">
       <a class="btn btn-ghost btn-sm" href="index.html" target="_blank" rel="noopener">View Site</a>
       <button class="btn btn-ghost btn-sm" onclick="logout()">Lock</button>
+      <p class="side-note">Analytics counts visits in this browser. Add a Google Analytics ID in Settings for full visitor tracking.</p>
     </div>
-  </div>
+  </aside>
 
-  <div class="main">
-    <div class="ov-grid">
-      <div class="ov-card"><div class="ov-num" id="ovLeads">0</div><div class="ov-label">Total Leads Captured</div></div>
-      <div class="ov-card"><div class="ov-num" id="ovToday">0</div><div class="ov-label">Leads Today</div></div>
-      <div class="ov-card"><div class="ov-num" id="ovCalls">0</div><div class="ov-label">Call Bookings</div></div>
-      <div class="ov-card"><div class="ov-num" id="ovEdits">0</div><div class="ov-label">Content Fields Customized</div></div>
-    </div>
-
-    <div class="tabs">
-      <button class="tab active" data-panel="leads">Leads Inbox <span class="badge" id="leadBadge" style="display:none">0</span></button>
-      <button class="tab" data-panel="content">Content Editor</button>
-      <button class="tab" data-panel="settings">Settings</button>
+  <main class="main">
+    <!-- DASHBOARD -->
+    <div class="panel active" id="panel-dash">
+      <div class="main-head"><div><h2>Dashboard</h2><p>What's happening on your website</p></div>
+        <button class="btn btn-ghost btn-sm" onclick="renderDash()">Refresh</button></div>
+      <div class="kpi-grid">
+        <div class="kpi"><b id="kViews">0</b><span>PAGE VIEWS (THIS BROWSER)</span><small id="kViewsToday"></small></div>
+        <div class="kpi"><b id="kLeads">0</b><span>LEADS CAPTURED</span><small id="kLeadsToday"></small></div>
+        <div class="kpi"><b id="kCta">0</b><span>CTA CLICKS</span><small id="kWa"></small></div>
+        <div class="kpi"><b id="kGame">0</b><span>GAME PLAYS</span><small id="kScroll"></small></div>
+      </div>
+      <div class="dash-grid">
+        <div class="section-card">
+          <h3>Views — last 14 days</h3>
+          <div class="hint">Page views recorded in this browser</div>
+          <div class="bars" id="viewBars"></div>
+        </div>
+        <div>
+          <div class="section-card">
+            <h3>Top pages</h3>
+            <div id="topPages"></div>
+          </div>
+          <div class="section-card">
+            <h3>Devices</h3>
+            <div id="devSplit"></div>
+          </div>
+        </div>
+      </div>
+      <p class="note">This built-in tracker stores data in each visitor's own browser, so the dashboard shows activity from this device — perfect for testing. For complete cross-visitor analytics on the live site, paste your free Google Analytics ID (G-XXXX) in Settings; the site will load it automatically.</p>
     </div>
 
     <!-- LEADS -->
-    <div class="panel active" id="panel-leads">
-      <div class="section-card">
-        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:10px">
-          <div><h3>Leads Inbox</h3><div class="hint" style="margin:0">Every form submission from the website lands here, newest first.</div></div>
-          <div style="display:flex;gap:10px">
-            <button class="btn btn-sm" onclick="exportCSV()">Export CSV</button>
-            <button class="btn btn-danger btn-sm" onclick="clearLeads()">Clear All</button>
-          </div>
-        </div>
-        <div id="leadsTableWrap"></div>
-      </div>
-      <p class="note">Leads are stored in this browser (no server needed). For live email/WhatsApp notifications when you host the site, connect the forms to a service like Formspree, Web3Forms, or your WordPress backend — the form fields are ready for it.</p>
+    <div class="panel" id="panel-leads">
+      <div class="main-head"><div><h2>Leads Inbox</h2><p>Every form, booking and game submission — newest first</p></div>
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-sm" onclick="exportCSV()">Export CSV</button>
+          <button class="btn btn-danger btn-sm" onclick="clearLeads()">Clear All</button>
+        </div></div>
+      <div class="section-card" id="leadsTableWrap"></div>
+      <p class="note">Leads are stored in this browser. When you connect the forms to a backend or service (Formspree, Web3Forms, WordPress), submissions will reach your email too.</p>
     </div>
 
-    <!-- CONTENT (auto-generated from assets/schema.js — every text on the site) -->
+    <!-- CONTENT -->
     <div class="panel" id="panel-content">
-      <div class="note" style="margin-bottom:18px">This editor is <b style="color:#fff">auto-generated from the site's content schema</b> — every headline, number, funny line, and button label on the website is here. Edit → Save → the site updates instantly.</div>
-      <input id="fieldSearch" placeholder="Search fields… (e.g. 'whatsapp', 'funny', 'hero')" style="margin-bottom:20px">
+      <div class="main-head"><div><h2>Content Editor</h2><p>Every text on the website — edit, save, done</p></div></div>
+      <input id="fieldSearch" placeholder="Search fields… (e.g. 'whatsapp', 'hero', 'video')" style="margin-bottom:18px">
       <div id="contentSections"></div>
     </div>
 
     <!-- SETTINGS -->
     <div class="panel" id="panel-settings">
+      <div class="main-head"><div><h2>Settings</h2><p>Security and integrations</p></div></div>
       <div class="section-card">
         <h3>Change Passcode</h3>
         <div class="hint">Protects this admin panel on this browser.</div>
@@ -190,91 +255,50 @@ tr:hover td { background:rgba(30,111,255,.05); }
         </div>
       </div>
       <div class="section-card">
-        <h3>Reset Content</h3>
-        <div class="hint">Restore all website text and numbers to the original blueprint defaults. Leads are not affected.</div>
-        <button class="btn btn-danger" onclick="resetContent()">Reset All Content to Defaults</button>
+        <h3>Google Analytics</h3>
+        <div class="hint">Paste your GA4 Measurement ID (looks like G-AB12CD34). The site loads it automatically on every page. Leave empty to disable.</div>
+        <div class="fgrid">
+          <div class="f"><label>Measurement ID</label><input data-key="ga_id" placeholder="G-XXXXXXXXXX"></div>
+        </div>
       </div>
-      <p class="note">This admin panel saves everything in your browser's local storage — perfect for previewing and tweaking the site. When you move to live hosting (e.g. WordPress per your blueprint), this same content structure maps cleanly to your CMS fields.</p>
+      <div class="section-card">
+        <h3>Reset</h3>
+        <div class="hint">Restore all website text to defaults, or clear local analytics. Leads are not affected.</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn btn-danger btn-sm" onclick="resetContent()">Reset All Content</button>
+          <button class="btn btn-ghost btn-sm" onclick="clearStats()">Clear Analytics Data</button>
+        </div>
+      </div>
     </div>
-  </div>
+  </main>
+</div>
 
-  <div class="savebar" id="savebar">
-    <span>● Unsaved changes</span>
-    <div style="display:flex;gap:10px">
-      <button class="btn btn-ghost btn-sm" onclick="loadContent()">Discard</button>
-      <button class="btn" onclick="saveContent()">Save & Publish to Site</button>
-    </div>
+<div class="savebar" id="savebar">
+  <span>Unsaved changes</span>
+  <div style="display:flex;gap:10px">
+    <button class="btn btn-ghost btn-sm" onclick="loadContent()">Discard</button>
+    <button class="btn" onclick="saveContent()">Save &amp; Publish to Site</button>
   </div>
+</div>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script src="assets/schema.js"></script>
-<script src="assets/main.js"></script>
 <script>
 (function () {
   var DEFAULTS = window.SW_DEFAULTS || {};
   var SCHEMA = window.SW_SCHEMA || [];
-
-  /* ---- build editor from schema ---- */
-  function buildEditor() {
-    var wrap = document.getElementById('contentSections');
-    if (!wrap) return;
-    var html = '';
-    SCHEMA.forEach(function (sec) {
-      html += '<div class="section-card" data-section>' +
-        '<h3><span style="color:var(--cyan)">&#9656;</span> ' + sec.section + '</h3>' +
-        '<div class="hint">' + sec.hint + '</div><div class="fgrid">';
-      sec.fields.forEach(function (f) {
-        var cls = (f.type === 'textarea') ? 'f full' : 'f';
-        html += '<div class="' + cls + '" data-field-label="' + f.label.toLowerCase() + ' ' + f.key + '">' +
-          '<label>' + f.label + '</label>';
-        if (f.type === 'textarea') {
-          html += '<textarea data-key="' + f.key + '" rows="3"></textarea>';
-        } else {
-          html += '<input data-key="' + f.key + '">';
-        }
-        html += '</div>';
-      });
-      html += '</div></div>';
-    });
-    wrap.innerHTML = html;
-  }
-  buildEditor();
-
-  /* ---- field search ---- */
-  var search = document.getElementById('fieldSearch');
-  if (search) {
-    search.addEventListener('input', function () {
-      var q = search.value.toLowerCase().trim();
-      document.querySelectorAll('[data-field-label]').forEach(function (f) {
-        f.style.display = (!q || f.getAttribute('data-field-label').indexOf(q) !== -1) ? '' : 'none';
-      });
-      document.querySelectorAll('[data-section]').forEach(function (s) {
-        var any = Array.prototype.some.call(s.querySelectorAll('[data-field-label]'), function (f) { return f.style.display !== 'none'; });
-        s.style.display = any ? '' : 'none';
-      });
-    });
-  }
   var $ = function (s) { return document.querySelector(s); };
   var $$ = function (s) { return Array.prototype.slice.call(document.querySelectorAll(s)); };
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
 
   /* ---- auth ---- */
   function pass() { return localStorage.getItem('sw_admin_pass') || 'shahin2026'; }
-  /* Hide the default-passcode hint once a custom passcode is set */
-  if (localStorage.getItem('sw_admin_pass')) {
-    var hint = document.getElementById('passHint');
-    if (hint) hint.style.display = 'none';
-  }
+  if (localStorage.getItem('sw_admin_pass')) { var h = $('#passHint'); if (h) h.style.display = 'none'; }
   window.login = function () {
-    if ($('#passInput').value === pass()) {
-      sessionStorage.setItem('sw_admin_ok', '1');
-      showApp();
-    } else {
-      $('#passInput').style.borderColor = '#e23a3a';
-      $('#passInput').value = '';
-      $('#passInput').placeholder = 'Wrong passcode — try again';
-    }
+    if ($('#passInput').value === pass()) { sessionStorage.setItem('sw_admin_ok', '1'); showApp(); }
+    else { $('#passInput').style.borderColor = 'var(--red)'; $('#passInput').value = ''; $('#passInput').placeholder = 'Wrong passcode — try again'; }
   };
   window.logout = function () { sessionStorage.removeItem('sw_admin_ok'); location.reload(); };
   $('#passInput').addEventListener('keydown', function (e) { if (e.key === 'Enter') window.login(); });
@@ -283,27 +307,56 @@ tr:hover td { background:rgba(30,111,255,.05); }
     if (p.length < 6) return toast('Passcode must be at least 6 characters', true);
     localStorage.setItem('sw_admin_pass', p);
     $('#newPass').value = '';
-    toast('Passcode updated ✓');
+    toast('Passcode updated');
   };
-
   function showApp() {
     $('#loginView').style.display = 'none';
     $('#appView').style.display = 'block';
-    loadContent(); renderLeads(); refreshOverview();
+    buildEditor(); loadContent(); renderLeads(); renderDash();
   }
   if (sessionStorage.getItem('sw_admin_ok') === '1') showApp();
 
-  /* ---- tabs ---- */
-  $$('.tab').forEach(function (t) {
+  /* ---- nav ---- */
+  $$('.nav-item').forEach(function (t) {
     t.addEventListener('click', function () {
-      $$('.tab').forEach(function (x) { x.classList.remove('active'); });
+      $$('.nav-item').forEach(function (x) { x.classList.remove('active'); });
       $$('.panel').forEach(function (x) { x.classList.remove('active'); });
       t.classList.add('active');
       $('#panel-' + t.getAttribute('data-panel')).classList.add('active');
+      if (t.getAttribute('data-panel') === 'dash') renderDash();
     });
   });
 
-  /* ---- content ---- */
+  /* ---- content editor (auto-generated from schema) ---- */
+  function buildEditor() {
+    var wrap = $('#contentSections');
+    if (!wrap || wrap.children.length) return;
+    var html = '';
+    SCHEMA.forEach(function (sec) {
+      html += '<div class="section-card" data-section><h3><span style="color:var(--cyan)">&#9656;</span> ' + esc(sec.section) + '</h3>' +
+        '<div class="hint">' + esc(sec.hint) + '</div><div class="fgrid">';
+      sec.fields.forEach(function (f) {
+        var cls = (f.type === 'textarea') ? 'f full' : 'f';
+        html += '<div class="' + cls + '" data-field-label="' + esc(f.label.toLowerCase() + ' ' + f.key) + '"><label>' + esc(f.label) + '</label>';
+        html += (f.type === 'textarea') ? '<textarea data-key="' + f.key + '" rows="3"></textarea>' : '<input data-key="' + f.key + '">';
+        html += '</div>';
+      });
+      html += '</div></div>';
+    });
+    wrap.innerHTML = html;
+  }
+  var search = $('#fieldSearch');
+  if (search) search.addEventListener('input', function () {
+    var q = search.value.toLowerCase().trim();
+    $$('[data-field-label]').forEach(function (f) {
+      f.style.display = (!q || f.getAttribute('data-field-label').indexOf(q) !== -1) ? '' : 'none';
+    });
+    $$('[data-section]').forEach(function (s) {
+      var any = Array.prototype.some.call(s.querySelectorAll('[data-field-label]'), function (f) { return f.style.display !== 'none'; });
+      s.style.display = any ? '' : 'none';
+    });
+  });
+
   function saved() { try { return JSON.parse(localStorage.getItem('sw_content') || '{}'); } catch (e) { return {}; } }
   window.loadContent = function () {
     var s = saved();
@@ -312,7 +365,6 @@ tr:hover td { background:rgba(30,111,255,.05); }
       f.value = (s[k] !== undefined && s[k] !== '') ? s[k] : (DEFAULTS[k] || '');
     });
     $('#savebar').classList.remove('show');
-    refreshOverview();
   };
   window.saveContent = function () {
     var out = {};
@@ -322,14 +374,13 @@ tr:hover td { background:rgba(30,111,255,.05); }
     });
     localStorage.setItem('sw_content', JSON.stringify(out));
     $('#savebar').classList.remove('show');
-    refreshOverview();
-    toast('Saved! The website now shows your changes ✓');
+    toast('Saved! The website now shows your changes');
   };
   window.resetContent = function () {
-    if (!confirm('Reset all content to blueprint defaults?')) return;
+    if (!confirm('Reset all content to defaults?')) return;
     localStorage.removeItem('sw_content');
     loadContent();
-    toast('Content reset to defaults ✓');
+    toast('Content reset to defaults');
   };
   document.addEventListener('input', function (e) {
     if (e.target.hasAttribute && e.target.hasAttribute('data-key')) $('#savebar').classList.add('show');
@@ -339,8 +390,11 @@ tr:hover td { background:rgba(30,111,255,.05); }
   function leads() { try { return JSON.parse(localStorage.getItem('sw_leads') || '[]'); } catch (e) { return []; } }
   window.renderLeads = function () {
     var L = leads(), wrap = $('#leadsTableWrap');
+    var badge = $('#leadBadge');
+    badge.style.display = L.length ? 'inline-block' : 'none';
+    badge.textContent = L.length;
     if (!L.length) {
-      wrap.innerHTML = '<div class="empty">No leads yet.<br><span style="font-size:13px">Submit the contact or book-call form on the website and it will appear here instantly.</span></div>';
+      wrap.innerHTML = '<div class="empty">No leads yet. Submit any form on the website (or play the Lead Catcher game) and it will appear here instantly.</div>';
       return;
     }
     var rows = L.map(function (l, i) {
@@ -348,12 +402,14 @@ tr:hover td { background:rgba(30,111,255,.05); }
       if (l.day || l.time) extra.push('Call: ' + (l.day || '') + ' ' + (l.time || ''));
       if (l.industry && l.industry.indexOf('Select') !== 0) extra.push('Industry: ' + l.industry);
       if (l.email) extra.push('Email: ' + l.email);
+      if (l.game_score) extra.push('Game score: ' + l.game_score);
+      var type = l.day ? 'Call Booking' : (l.source === 'Lead Catcher game' ? 'Game Lead' : 'Message');
       return '<tr>' +
-        '<td><b style="color:#fff">' + esc(l.name || '—') + '</b><br><span class="pill">' + (l.day ? 'Call Booking' : 'Message') + '</span></td>' +
+        '<td><b style="color:#fff">' + esc(l.name || '—') + '</b><br><span class="pill">' + type + '</span></td>' +
         '<td>' + esc(l.phone || '—') + '</td>' +
-        '<td><div class="lead-msg">' + esc(l.message || '—') + (extra.length ? '<br>' + extra.map(esc).join(' · ') : '') + '</div></td>' +
-        '<td style="white-space:nowrap;color:var(--mid);font-size:12.5px">' + esc(l.date || '') + '</td>' +
-        '<td><button class="btn btn-danger btn-sm" onclick="delLead(' + i + ')"></button></td>' +
+        '<td><div class="lead-msg">' + esc(l.message || '—') + (extra.length ? '<br>' + esc(extra.join(' · ')) : '') + '</div></td>' +
+        '<td style="white-space:nowrap;color:var(--mid);font-size:12px">' + esc(l.date || '') + '</td>' +
+        '<td><button class="btn btn-danger btn-sm" onclick="delLead(' + i + ')">&#215;</button></td>' +
         '</tr>';
     }).join('');
     wrap.innerHTML = '<table><thead><tr><th>Lead</th><th>Phone</th><th>Details</th><th>When</th><th></th></tr></thead><tbody>' + rows + '</tbody></table>';
@@ -361,17 +417,17 @@ tr:hover td { background:rgba(30,111,255,.05); }
   window.delLead = function (i) {
     var L = leads(); L.splice(i, 1);
     localStorage.setItem('sw_leads', JSON.stringify(L));
-    renderLeads(); refreshOverview();
+    renderLeads(); renderDash();
   };
   window.clearLeads = function () {
     if (!confirm('Delete ALL leads? This cannot be undone.')) return;
     localStorage.removeItem('sw_leads');
-    renderLeads(); refreshOverview();
+    renderLeads(); renderDash();
   };
   window.exportCSV = function () {
     var L = leads();
     if (!L.length) return toast('No leads to export', true);
-    var cols = ['date', 'name', 'phone', 'email', 'industry', 'day', 'time', 'message', 'page'];
+    var cols = ['date', 'name', 'phone', 'email', 'industry', 'day', 'time', 'message', 'source', 'game_score', 'page'];
     var csv = cols.join(',') + '\n' + L.map(function (l) {
       return cols.map(function (c) { return '"' + String(l[c] || '').replace(/"/g, '""') + '"'; }).join(',');
     }).join('\n');
@@ -381,19 +437,60 @@ tr:hover td { background:rgba(30,111,255,.05); }
     a.click();
   };
 
-  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  /* ---- dashboard analytics ---- */
+  function stats() { try { return JSON.parse(localStorage.getItem('sw_stats') || '[]'); } catch (e) { return []; } }
+  window.clearStats = function () {
+    if (!confirm('Clear all local analytics data?')) return;
+    localStorage.removeItem('sw_stats');
+    renderDash();
+    toast('Analytics cleared');
+  };
+  window.renderDash = function () {
+    var S = stats(), L = leads();
+    var today = new Date().toISOString().slice(0, 10);
+    var views = S.filter(function (e) { return e.t === 'view'; });
+    var ctas = S.filter(function (e) { return e.t === 'cta'; }).length;
+    var was = S.filter(function (e) { return e.t === 'whatsapp'; }).length;
+    var games = S.filter(function (e) { return e.t === 'game'; }).length;
+    var deep = S.filter(function (e) { return e.t === 'scroll75'; }).length;
+    $('#kViews').textContent = views.length;
+    $('#kViewsToday').textContent = views.filter(function (e) { return e.d === today; }).length + ' today';
+    $('#kLeads').textContent = L.length;
+    $('#kLeadsToday').textContent = L.filter(function (l) { return (l.date || '').indexOf(new Date().toLocaleDateString('en-IN')) === 0; }).length + ' today';
+    $('#kCta').textContent = ctas;
+    $('#kWa').textContent = was + ' WhatsApp taps';
+    $('#kGame').textContent = games;
+    $('#kScroll').textContent = deep + ' deep scrolls';
 
-  function refreshOverview() {
-    var L = leads();
-    $('#ovLeads').textContent = L.length;
-    var today = new Date().toLocaleDateString('en-IN');
-    $('#ovToday').textContent = L.filter(function (l) { return (l.date || '').indexOf(today) === 0; }).length;
-    $('#ovCalls').textContent = L.filter(function (l) { return l.day; }).length;
-    $('#ovEdits').textContent = Object.keys(saved()).length;
-    var badge = $('#leadBadge');
-    badge.style.display = L.length ? 'inline-block' : 'none';
-    badge.textContent = L.length;
-  }
+    /* 14-day bars */
+    var days = [], counts = [];
+    for (var i = 13; i >= 0; i--) {
+      var d = new Date(Date.now() - i * 864e5).toISOString().slice(0, 10);
+      days.push(d.slice(5));
+      counts.push(views.filter(function (e) { return e.d === d; }).length);
+    }
+    var max = Math.max.apply(null, counts.concat([1]));
+    $('#viewBars').innerHTML = days.map(function (d, i) {
+      return '<div class="bar"><i style="height:' + Math.round(counts[i] / max * 100) + '%" title="' + counts[i] + ' views"></i><small>' + d + '</small></div>';
+    }).join('');
+
+    /* top pages */
+    var byPage = {};
+    views.forEach(function (e) { byPage[e.p] = (byPage[e.p] || 0) + 1; });
+    var pages = Object.keys(byPage).sort(function (a, b) { return byPage[b] - byPage[a]; }).slice(0, 6);
+    $('#topPages').innerHTML = pages.length ? pages.map(function (p) {
+      var pct = Math.round(byPage[p] / views.length * 100);
+      return '<div class="hl"><span><b>' + esc(p) + '</b><div class="meter"><i style="width:' + pct + '%"></i></div></span><span style="color:var(--cyan);font-weight:700;margin-left:14px">' + byPage[p] + '</span></div>';
+    }).join('') : '<div class="empty" style="padding:20px">Visit the site pages to see data here.</div>';
+
+    /* devices */
+    var devs = { desktop: 0, tablet: 0, mobile: 0 };
+    views.forEach(function (e) { if (devs[e.dev] !== undefined) devs[e.dev]++; });
+    $('#devSplit').innerHTML = ['desktop', 'tablet', 'mobile'].map(function (d) {
+      var pct = views.length ? Math.round(devs[d] / views.length * 100) : 0;
+      return '<div class="hl"><span style="flex:1"><b style="text-transform:capitalize">' + d + '</b><div class="meter"><i style="width:' + pct + '%"></i></div></span><span style="color:var(--cyan);font-weight:700;margin-left:14px">' + pct + '%</span></div>';
+    }).join('');
+  };
 
   var toastTimer;
   function toast(msg, warn) {

@@ -15,7 +15,8 @@ window.SW_SCHEMA = [
       { key: "phone", label: "Phone", def: "+91 74777 53500" },
       { key: "email", label: "Email", def: "sahin@goodwordbooks.com" },
       { key: "address", label: "Serving Line", def: "Diamond Harbour · Kolkata · Delhi · Pan-India" },
-      { key: "gst", label: "GST Line (footer)", def: "GSTIN: Coming soon" }
+      { key: "gst", label: "GST Line (footer)", def: "GSTIN: Coming soon" },
+      { key: "ga_id", label: "Google Analytics ID (G-XXXXXXX, optional)", def: "" }
     ]
   },
   {
@@ -69,7 +70,7 @@ window.SW_SCHEMA = [
     hint: "Brands worked with. Format: Name or Name|img:path-to-logo. Comma separated.",
     fields: [
       { key: "clients_head", label: "Strip Title", def: "BRANDS WE'VE WORKED WITH" },
-      { key: "clients_list", label: "Clients (comma separated)", def: "Goodword Books|img:assets/img/goodword.jpg, Medha Care, QuestX, Sky Blue Publication, CPS Bangla, Maulana Wahiduddin Khan — Official", type: "textarea" }
+      { key: "clients_list", label: "Clients (comma separated)", def: "Goodword Books|img:assets/img/goodword.jpg, Goodword India, Goodword Bangla, Maulana Wahiduddin Khan — Official, Saniyasnain Khan, Maria Khan, Shoaib Ilyas, Medha Care, QuestX, Sky Blue Publication, CPS Bangla", type: "textarea" }
     ]
   },
   {
@@ -79,7 +80,7 @@ window.SW_SCHEMA = [
     fields: [
       { key: "marq1", label: "Line 1", def: "4.1x ROAS. The calculator double-checked. Twice." },
       { key: "marq2", label: "Line 2", def: "186K monthly sessions. Started at basically zero." },
-      { key: "marq3", label: "Line 3", def: "Next.js, React, custom APIs — yes, we actually code." },
+      { key: "marq3", label: "Line 3", def: "1000+ videos delivered. Our timeline scrubber needs a holiday." },
       { key: "marq4", label: "Line 4", def: "We reply on WhatsApp faster than your cousin" },
       { key: "marq5", label: "Line 5", def: "Client data stays private. Even our wins are discreet." },
       { key: "marq6", label: "Line 6", def: "Built with AI. Powered by chai." }
@@ -103,9 +104,9 @@ window.SW_SCHEMA = [
       { key: "stat3_suffix", label: "Stat 3 Suffix", def: "%+", w: "xs" },
       { key: "stat3_label", label: "Stat 3 Label", def: "Traffic Growth in 7 Months" },
       { key: "stat4_pre", label: "Stat 4 Prefix", def: "", w: "xs" },
-      { key: "stat4_num", label: "Stat 4 Number", def: "20", w: "s" },
+      { key: "stat4_num", label: "Stat 4 Number", def: "1000", w: "s" },
       { key: "stat4_suffix", label: "Stat 4 Suffix", def: "+", w: "xs" },
-      { key: "stat4_label", label: "Stat 4 Label", def: "In-House Team Members" }
+      { key: "stat4_label", label: "Stat 4 Label", def: "Videos Delivered & Counting" }
     ]
   },
   {
@@ -221,7 +222,8 @@ window.SW_SCHEMA = [
     hint: "The reverse-scrolling strip of tools with logos. Comma-separated list.",
     fields: [
       { key: "tools_head", label: "Strip Title", def: "OUR ARSENAL" },
-      { key: "tools_list", label: "Tools (comma separated)", def: "Next.js, React, Claude AI, ChatGPT, Gemini, Cursor, Supabase, Node.js, PostgreSQL, Shopify, WordPress, Meta Ads, Google Ads, Google Analytics, WhatsApp API, Premiere Pro, GitHub, Tailwind CSS, JavaScript, Veo3", type: "textarea" },
+      { key: "bub_sub", label: "Bubble Cloud Subtext", def: "Move your cursor through them — they scatter like water. These are the tools behind every number on this page.", type: "textarea" },
+      { key: "tools_list", label: "Tools (comma separated)", def: "Premiere Pro, After Effects, Video Editing, Script Writing, React, Next.js, Node.js, PostgreSQL, Supabase, Shopify, WordPress, SEO, Meta Ads, Google Ads, Claude AI, ChatGPT, Gemini, Canva, Figma, GitHub", type: "textarea" },
       { key: "tools_funny", label: "Light Caption", def: "We don't list these to show off. Okay — maybe a little." }
     ]
   },

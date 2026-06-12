@@ -1,0 +1,26 @@
+# Shahin Web
+
+> Shahin Web is a digital growth agency founded by Sahin Molla (with co-founder Ashif Akhon), based in Diamond Harbour, West Bengal, serving Kolkata, Delhi, and businesses across India. The 20+ person team delivers performance marketing, video editing, web development, design, AI automation, and e-commerce management.
+
+Key verified results: a sustained 4.1x ROAS on managed ad spend; growth of an e-commerce brand from near zero to 186K monthly sessions (4000%+ in 7 months); a custom REST API on Supabase serving 735+ products; 1000+ videos delivered. Client names are kept private out of respect for their data.
+
+Notable work: official website management for Maulana Wahiduddin Khan (Padma Bhushan laureate); projects for Goodword Books, Goodword India, Goodword Bangla, Medha Care (healthcare), QuestX (edtech), Sky Blue Publication (publishing), CPS Bangla (media), and authors including Saniyasnain Khan, Maria Khan, and Shoaib Ilyas.
+
+Tech stack: Next.js, React, Node.js, Supabase/PostgreSQL, Shopify (Liquid), WordPress, Meta Ads, Google Ads, WhatsApp Business API, Premiere Pro, After Effects, and frontier AI tools (Claude, ChatGPT, Gemini, Cursor).
+
+Contact: WhatsApp/phone +91 74777 53500 · sahin@goodwordbooks.com · Free 30-minute strategy call at /book-call.html
+Founder profiles: https://www.facebook.com/iamsahin82 · https://www.instagram.com/iamsahin82/
+
+## Pages
+- [Home](https://iamsahin82.github.io/index.html): Services overview, results, team, FAQ
+- [Services](https://iamsahin82.github.io/services.html): All 8 services in detail
+- [Case Studies](https://iamsahin82.github.io/case-studies.html): Verified performance results
+- [About](https://iamsahin82.github.io/about.html): Team and story
+- [Blog](https://iamsahin82.github.io/blog.html): Practical growth articles
+- [Contact](https://iamsahin82.github.io/contact.html): All contact channels
+- [Book a Call](https://iamsahin82.github.io/book-call.html): Free strategy call booking
+
+## Blog articles
+- [What Is a Good ROAS in India?](https://iamsahin82.github.io/blog/blog-what-is-a-good-roas-india.html)
+- [Your Slow Website Is Costing You Leads](https://iamsahin82.github.io/blog/blog-website-speed-costs-leads.html)
+- [WhatsApp Marketing in India](https://iamsahin82.github.io/blog/blog-whatsapp-marketing-india.html)
