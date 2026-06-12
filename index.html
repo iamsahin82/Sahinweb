@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shahin Web — Digital Growth Agency | Kolkata · Delhi · Pan-India | Marketing, Video, Web & AI</title>
+<meta name="description" content="Performance marketing at 4.1x ROAS, video editing, Next.js development, design, AI automation and e-commerce management. Founded by Sahin Molla. Kolkata · Delhi · Pan-India.">
+<meta name="theme-color" content="#0A0F1E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='11' fill='%230A0F1E'/%3E%3Cpath d='M8 38 C20 38 17 24 24 23 C31 22 28 10 40 9' fill='none' stroke='%2300D4FF' stroke-width='5' stroke-linecap='round'/%3E%3Ccircle cx='8' cy='38' r='3.5' fill='%2300C896'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": "#shahinweb",
+      "name": "Shahin Web",
+      "slogan": "We Turn Marketing Budgets Into Predictable Revenue",
+      "description": "Digital growth agency: performance marketing, video editing, Next.js & React development, design, AI automation, and e-commerce management.",
+      "email": "sahin@goodwordbooks.com",
+      "telephone": "+917477753500",
+      "areaServed": ["Kolkata", "Delhi", "West Bengal", "India"],
+      "address": { "@type": "PostalAddress", "addressLocality": "Diamond Harbour", "addressRegion": "West Bengal", "addressCountry": "IN" },
+      "founder": { "@id": "#sahin" },
+      "sameAs": ["https://www.facebook.com/iamsahin82", "https://www.instagram.com/iamsahin82/"]
+    },
+    {
+      "@type": "Person",
+      "@id": "#sahin",
+      "name": "Sahin Molla",
+      "alternateName": "iamsahin82",
+      "jobTitle": "Founder · Full-Stack Developer & Growth Strategist",
+      "description": "Self-taught full-stack developer (Next.js, React, Node.js, Supabase), performance marketer, video editor and AI operator. Built a heritage publisher's digital growth engine (186K monthly sessions, 4.1x ROAS). Manages the official website of Padma Bhushan laureate Maulana Wahiduddin Khan.",
+      "knowsAbout": ["Performance Marketing", "Video Editing", "Next.js", "React", "Node.js", "Supabase", "Design", "AI Automation", "E-commerce Management", "SEO"],
+      "worksFor": { "@id": "#shahinweb" },
+      "homeLocation": { "@type": "Place", "name": "Diamond Harbour, West Bengal, India" },
+      "sameAs": ["https://www.facebook.com/iamsahin82", "https://www.instagram.com/iamsahin82/"]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="logo"><span class="logo-mark logo-mark--svg"><svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="lgmn" x1="0" y1="48" x2="48" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#1E6FFF"/><stop offset="1" stop-color="#00D4FF"/></linearGradient></defs><path d="M5 41 C18 41 15 25 24 24 C33 23 30 8 43 7" fill="none" stroke="url(#lgmn)" stroke-width="5" stroke-linecap="round"/><path d="M34 7 L43 7 L43 16" fill="none" stroke="#00D4FF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="5" cy="41" r="3.5" fill="#00C896"/></svg></span>SHAHIN&nbsp;<span class="logo-web">WEB</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="case-studies.html">Case Studies</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="#" data-wa-link class="wa-icon-link" title="WhatsApp us" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-chat"/></svg></a>
+      <a href="book-call.html" class="btn btn-primary btn-pulse btn-nav-desktop">Book Free Call</a>
+      <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<nav class="mobile-menu">
+  <a href="index.html">Home</a>
+  <a href="services.html">Services</a>
+  <a href="case-studies.html">Case Studies</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="book-call.html" class="btn btn-primary" style="margin-top:18px">Book Free Call</a>
+</nav>
+
+<section class="hero rope-host">
+  <canvas id="particles"></canvas>
+  <div class="hero-orb orb-1"></div>
+  <div class="hero-orb orb-2"></div>
+  <div class="container hero-inner">
+    <div>
+      <span class="hero-badge" data-bind="hero_badge">Kolkata &middot; Delhi &middot; Pan-India &mdash; Growth-First Agency</span>
+      <h1>
+        <span class="line char-reveal" data-bind="hero_h1_a">We Turn Marketing Budgets</span>
+        <span class="line grad char-reveal" data-bind="hero_h1_b">Into Predictable Revenue</span>
+      </h1>
+      <p class="hero-sub" data-bind="hero_sub"></p>
+      <div class="hero-ctas">
+        <a href="book-call.html" class="btn btn-primary btn-pulse btn-lg" data-bind="hero_cta1">Book Your Free 30-Min Strategy Call</a>
+        <a href="contact.html" class="btn btn-ghost" data-bind="hero_cta2">Get a Free Marketing Audit First</a>
+      </div>
+      <div class="trust-strip">
+        <span class="trust-item"><span class="ti"><svg class="ic" aria-hidden="true"><use href="#i-star"/></svg></span> <span data-bind="trust1">4.1x ROAS, Sustained</span></span>
+        <span class="trust-item"><span class="ti"><svg class="ic" aria-hidden="true"><use href="#i-chart"/></svg></span> <span data-bind="trust2">186K Monthly Sessions Built</span></span>
+        <span class="trust-item"><span class="ti"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg></span> <span data-bind="trust3">20+ In-House Specialists</span></span>
+        <span class="trust-item"><span class="ti"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg></span> <span data-bind="trust4">Kolkata &middot; Delhi &middot; Pan-India</span></span>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="float-card fc-1">
+        <div class="fc-label" data-bind="fc1_label">Monthly Sessions</div>
+        <div class="fc-value" data-bind="fc1_value">186K</div>
+        <div class="fc-delta" data-bind="fc1_delta">+4000% in 7 months</div>
+        <div class="fc-bars">
+          <i style="height:18px"></i><i style="height:26px"></i><i style="height:22px"></i>
+          <i style="height:34px"></i><i style="height:42px"></i><i style="height:56px"></i>
+        </div>
+      </div>
+      <div class="float-card fc-2">
+        <div class="fc-label" data-bind="fc2_label">ROAS</div>
+        <div class="fc-value" data-bind="fc2_value">4.1x</div>
+        <div class="fc-delta" data-bind="fc2_delta">Profitable &amp; scaling</div>
+      </div>
+      <div class="float-card fc-3">
+        <div class="fc-label" data-bind="fc3_label">Products Live</div>
+        <div class="fc-value" data-bind="fc3_value">735+</div>
+        <div class="fc-ring"><b data-bind="fc3_ring">API</b></div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint"><svg class="ic" aria-hidden="true"><use href="#i-down"/></svg></div>
+</section>
+
+<div class="clients-strip">
+  <p class="strip-title" data-bind="clients_head">BRANDS WE'VE WORKED WITH</p>
+  <div class="container clients-wall" data-clients></div>
+</div>
+
+<div class="trust-bar">
+  <div class="container">
+    <p class="trust-bar-title">Real numbers from real work &mdash; client names kept private, with respect</p>
+    <div class="stats-row">
+      <div class="stat-card reveal" data-tilt>
+        <div class="stat-num"><span data-bind="stat1_pre"></span><span class="count-up" data-bind="stat1_num">4.1</span><span class="suffix" data-bind="stat1_suffix">x</span></div>
+        <div class="stat-label" data-bind="stat1_label">Return on Ad Spend (ROAS)</div>
+      </div>
+      <div class="stat-card reveal reveal-d1" data-tilt>
+        <div class="stat-num"><span data-bind="stat2_pre"></span><span class="count-up" data-bind="stat2_num">186</span><span class="suffix" data-bind="stat2_suffix">K+</span></div>
+        <div class="stat-label" data-bind="stat2_label">Monthly Sessions Grown</div>
+      </div>
+      <div class="stat-card reveal reveal-d2" data-tilt>
+        <div class="stat-num"><span data-bind="stat3_pre"></span><span class="count-up" data-bind="stat3_num">4000</span><span class="suffix" data-bind="stat3_suffix">%+</span></div>
+        <div class="stat-label" data-bind="stat3_label">Traffic Growth in 7 Months</div>
+      </div>
+      <div class="stat-card reveal reveal-d3" data-tilt>
+        <div class="stat-num"><span data-bind="stat4_pre"></span><span class="count-up" data-bind="stat4_num">20</span><span class="suffix" data-bind="stat4_suffix">+</span></div>
+        <div class="stat-label" data-bind="stat4_label">In-House Team Members</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="marquee marquee-ticker" data-marquee="ticker" aria-hidden="true">
+  <div class="marquee-track"></div>
+</div>
+
+<section class="growth-graph">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker" data-bind="graph_kicker">The Curve</span>
+      <h2 data-bind="graph_h">This Is What Growth Looks Like</h2>
+      <p data-bind="graph_sub"></p>
+    </div>
+    <div class="gg-wrap">
+      <svg class="gg-svg" viewBox="0 0 1200 380" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+        <defs>
+          <linearGradient id="ggGrad" x1="0" y1="1" x2="1" y2="0">
+            <stop offset="0" stop-color="#1E6FFF"/><stop offset=".55" stop-color="#00D4FF"/><stop offset="1" stop-color="#00C896"/>
+          </linearGradient>
+          <linearGradient id="ggArea" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#00D4FF" stop-opacity=".55"/><stop offset="1" stop-color="#00D4FF" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <line class="gg-grid" x1="40" y1="60" x2="1160" y2="60"/>
+        <line class="gg-grid" x1="40" y1="130" x2="1160" y2="130"/>
+        <line class="gg-grid" x1="40" y1="200" x2="1160" y2="200"/>
+        <line class="gg-grid" x1="40" y1="270" x2="1160" y2="270"/>
+        <line class="gg-grid" x1="40" y1="340" x2="1160" y2="340"/>
+        <path class="gg-area" d="M40,340 C180,336 260,322 380,300 C500,278 560,250 660,215 C760,180 850,140 950,105 C1050,70 1110,55 1160,45 L1160,380 L40,380 Z"/>
+        <path class="gg-line" d="M40,340 C180,336 260,322 380,300 C500,278 560,250 660,215 C760,180 850,140 950,105 C1050,70 1110,55 1160,45"/>
+        <circle class="gg-halo" cx="40" cy="340" r="12"/>
+        <circle class="gg-dot" cx="40" cy="340" r="7"/>
+      </svg>
+      <div class="gg-counter"><span class="gg-pct">0K</span><small>MONTHLY SESSIONS</small></div>
+    </div>
+    <div class="gg-labels">
+      <span data-bind="graph_start">Month 1 &middot; Near zero</span>
+      <span class="end" data-bind="graph_end">Month 7 &middot; 186K sessions</span>
+    </div>
+    <p class="gg-funny" data-bind="graph_funny"></p>
+  </div>
+</section>
+
+
+<section>
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">The Problem</span>
+      <h2>Tired of Marketing That <span class="accent">Doesn't Bring Results?</span></h2>
+      <p>You're posting on Instagram. Running ads. Maybe you've even hired an agency before. But your phone isn't ringing the way it should.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card pain-card reveal" data-tilt>
+        <span class="pain-icon"><svg class="ic" aria-hidden="true"><use href="#i-coins"/></svg></span>
+        <h4>Ads, But No Leads</h4>
+        <p>Spending on ads with little coming back &mdash; money out, not enough in.</p>
+      </div>
+      <div class="card pain-card reveal reveal-d1" data-tilt>
+        <span class="pain-icon"><svg class="ic" aria-hidden="true"><use href="#i-chart-down"/></svg></span>
+        <h4>Competitors Rank Higher</h4>
+        <p>Customers search for what you sell &mdash; and find someone else first.</p>
+      </div>
+      <div class="card pain-card reveal reveal-d2" data-tilt>
+        <span class="pain-icon"><svg class="ic" aria-hidden="true"><use href="#i-report"/></svg></span>
+        <h4>Reports Without Revenue</h4>
+        <p>Pretty graphs every month &mdash; but the phone stays quiet.</p>
+      </div>
+    </div>
+    <p class="transition-note reveal">It's usually not the business &mdash; <strong style="color:#fff">it's the strategy.</strong> Many agencies optimise for likes and impressions. We optimise for one thing: <span class="green-t" style="font-weight:700">your growth.</span></p>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">Services</span>
+      <h2>Every Tool You Need to Grow, <span class="accent">Under One Roof</span></h2>
+      <p>Six core services, one connected system &mdash; each one strengthens the others.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card service-card reveal" data-tilt>
+        <div class="s-icon"><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg></div>
+        <h4>Performance Marketing</h4>
+        <p><strong style="color:var(--light)">Ads That Pay Back.</strong> Meta + Google Ads at a sustained 4.1x ROAS &mdash; real, trackable leads.</p>
+        <a href="services.html" class="s-link">Learn More <svg class="ic" aria-hidden="true"><use href="#i-right"/></svg></a>
+      </div>
+      <div class="card service-card reveal reveal-d1" data-tilt>
+        <div class="s-icon"><svg class="ic" aria-hidden="true"><use href="#i-film"/></svg></div>
+        <h4>Video Editing</h4>
+        <p><strong style="color:var(--light)">Video That Sells.</strong> Reels, ads, and branded content &mdash; cut, graded and motion-graphed in Premiere Pro.</p>
+        <a href="services.html" class="s-link">Learn More <svg class="ic" aria-hidden="true"><use href="#i-right"/></svg></a>
+      </div>
+      <div class="card service-card reveal reveal-d2" data-tilt>
+        <div class="s-icon"><svg class="ic" aria-hidden="true"><use href="#i-code"/></svg></div>
+        <h4>Web Development</h4>
+        <p><strong style="color:var(--light)">Next.js &middot; React &middot; APIs.</strong> Fast, modern sites and custom backends &mdash; Supabase, Node.js, Shopify, WordPress.</p>
+        <a href="services.html" class="s-link">Learn More <svg class="ic" aria-hidden="true"><use href="#i-right"/></svg></a>
+      </div>
+      <div class="card service-card reveal" data-tilt>
+        <div class="s-icon"><svg class="ic" aria-hidden="true"><use href="#i-pen"/></svg></div>
+        <h4>Design</h4>
+        <p><strong style="color:var(--light)">Design That Converts.</strong> Brand identities, creatives, and interfaces that look premium and sell quietly.</p>
+        <a href="services.html" class="s-link">Learn More <svg class="ic" aria-hidden="true"><use href="#i-right"/></svg></a>
+      </div>
+      <div class="card service-card reveal reveal-d1" data-tilt>
+        <div class="s-icon"><svg class="ic" aria-hidden="true"><use href="#i-bot"/></svg></div>
+        <h4>AI Automation</h4>
+        <p><strong style="color:var(--light)">Frontier AI, Applied.</strong> WhatsApp automation, AI content systems, and workflows that work while you sleep.</p>
+        <a href="services.html" class="s-link">Learn More <svg class="ic" aria-hidden="true"><use href="#i-right"/></svg></a>
+      </div>
+      <div class="card service-card reveal reveal-d2" data-tilt>
+        <div class="s-icon"><svg class="ic" aria-hidden="true"><use href="#i-cart"/></svg></div>
+        <h4>E-commerce Management</h4>
+        <p><strong style="color:var(--light)">Your Store, Handled.</strong> Catalogue, listings, orders, automation &mdash; we run 735+ products on a live API today.</p>
+        <a href="services.html" class="s-link">Learn More <svg class="ic" aria-hidden="true"><use href="#i-right"/></svg></a>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:40px" class="reveal"><a href="services.html" class="s-link" style="font-size:16px">See All Services <svg class="ic" aria-hidden="true"><use href="#i-right"/></svg></a></p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">Our Work</span>
+      <h2 data-bind="pf_head">Don't Take Our Word. Take Our Work.</h2>
+      <p data-bind="pf_sub"></p>
+    </div>
+
+    <div class="pf-card reveal">
+      <div class="pf-info">
+        <span class="pf-tag" data-bind="pf1_tag"></span>
+        <div class="pf-name" data-bind="pf1_name"></div>
+        <div class="pf-url" data-bind="pf1_url"></div>
+        <p class="pf-desc" data-bind="pf1_desc"></p>
+        <div class="pf-stats">
+          <div class="pf-stat"><b data-bind="pf1_s1n"></b><span data-bind="pf1_s1l"></span></div>
+          <div class="pf-stat"><b data-bind="pf1_s2n"></b><span data-bind="pf1_s2l"></span></div>
+          <div class="pf-stat"><b data-bind="pf1_s3n"></b><span data-bind="pf1_s3l"></span></div>
+        </div>
+      </div>
+      <div class="pf-shot">
+        <div class="pf-browser">
+          <div class="pf-browser-bar"><i></i><i></i><i></i><span class="pf-browser-url">e-commerce storefront</span></div>
+          <div class="pf-browser-body" style="text-align:center">
+            <span style="display:block;font-size:0;margin-bottom:14px"><svg class="ic" style="width:56px;height:56px;color:var(--cyan);filter:drop-shadow(0 0 16px rgba(0,212,255,.5))"><use href="#i-book"/></svg></span>
+            <div class="pf-skel" style="height:14px;width:70%;margin:0 auto 12px"></div>
+            <div class="pf-skel" style="height:10px;width:90%;margin:0 auto 12px"></div>
+            <div class="pf-skel" style="height:34px;width:42%;border-radius:9px;margin:18px auto 0"></div>
+          </div>
+        </div></div>
+    </div>
+    <div class="pf-card pf-flip reveal">
+      <div class="pf-info">
+        <span class="pf-tag" data-bind="pf2_tag"></span>
+        <div class="pf-name" data-bind="pf2_name"></div>
+        <div class="pf-url" data-bind="pf2_url"></div>
+        <p class="pf-desc" data-bind="pf2_desc"></p>
+        <div class="pf-stats">
+          <div class="pf-stat"><b data-bind="pf2_s1n"></b><span data-bind="pf2_s1l"></span></div>
+          <div class="pf-stat"><b data-bind="pf2_s2n"></b><span data-bind="pf2_s2l"></span></div>
+          <div class="pf-stat"><b data-bind="pf2_s3n"></b><span data-bind="pf2_s3l"></span></div>
+        </div>
+      </div>
+      <div class="pf-shot">
+        <div class="pf-browser">
+          <div class="pf-browser-bar"><i></i><i></i><i></i><span class="pf-browser-url">official website</span></div>
+          <div class="pf-browser-body" style="text-align:center">
+            <img class="pf-photo" src="assets/img/mwk.jpg" alt="Maulana Wahiduddin Khan" loading="lazy" onerror="this.remove()">
+            <div class="pf-skel" style="height:14px;width:70%;margin:0 auto 12px"></div>
+            <div class="pf-skel" style="height:10px;width:50%;margin:0 auto"></div>
+          </div>
+        </div></div>
+    </div>
+    <div class="pf-card reveal">
+      <div class="pf-info">
+        <span class="pf-tag" data-bind="pf3_tag"></span>
+        <div class="pf-name" data-bind="pf3_name"></div>
+        <div class="pf-url" data-bind="pf3_url"></div>
+        <p class="pf-desc" data-bind="pf3_desc"></p>
+        <div class="pf-stats">
+          <div class="pf-stat"><b data-bind="pf3_s1n"></b><span data-bind="pf3_s1l"></span></div>
+          <div class="pf-stat"><b data-bind="pf3_s2n"></b><span data-bind="pf3_s2l"></span></div>
+          <div class="pf-stat"><b data-bind="pf3_s3n"></b><span data-bind="pf3_s3l"></span></div>
+        </div>
+      </div>
+      <div class="pf-shot">
+        <div class="pf-browser">
+          <div class="pf-browser-bar"><i></i><i></i><i></i><span class="pf-browser-url">video production</span></div>
+          <div class="pf-browser-body" style="text-align:center">
+            <span style="display:block;font-size:0;margin-bottom:14px"><svg class="ic" style="width:56px;height:56px;color:var(--cyan);filter:drop-shadow(0 0 16px rgba(0,212,255,.5))"><use href="#i-film"/></svg></span>
+            <div class="pf-skel" style="height:90px;width:100%;border-radius:10px;margin-bottom:12px"></div>
+            <div class="pf-skel" style="height:10px;width:60%;margin:0 auto"></div>
+          </div>
+        </div></div>
+    </div>
+    <div class="also-building reveal">
+      <span class="pf-tag" data-bind="pf4_tag">ALSO BUILDING FOR</span>
+      <p data-bind="pf4_desc"></p>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">Industries</span>
+      <h2>We Speak <span class="accent">Your Industry's</span> Language</h2>
+    </div>
+    <div class="industries-grid reveal">
+      <a class="ind-tile" href="contact.html"><span><svg class="ic" aria-hidden="true"><use href="#i-building"/></svg></span>Real Estate</a>
+      <a class="ind-tile" href="contact.html"><span><svg class="ic" aria-hidden="true"><use href="#i-heart"/></svg></span>Healthcare</a>
+      <a class="ind-tile" href="contact.html"><span><svg class="ic" aria-hidden="true"><use href="#i-grad"/></svg></span>Education</a>
+      <a class="ind-tile" href="contact.html"><span><svg class="ic" aria-hidden="true"><use href="#i-food"/></svg></span>Restaurants</a>
+      <a class="ind-tile" href="contact.html"><span><svg class="ic" aria-hidden="true"><use href="#i-dumbbell"/></svg></span>Fitness &amp; Gyms</a>
+      <a class="ind-tile" href="contact.html"><span><svg class="ic" aria-hidden="true"><use href="#i-cart"/></svg></span>E-commerce</a>
+      <a class="ind-tile" href="contact.html"><span><svg class="ic" aria-hidden="true"><use href="#i-book"/></svg></span>Publishing</a>
+      <a class="ind-tile" href="contact.html"><span><svg class="ic" aria-hidden="true"><use href="#i-zap"/></svg></span>Startups</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">Results</span>
+      <h2>Real Numbers. Anonymous Clients. <span class="green-t">Genuine Growth.</span></h2>
+      <p>We don't publish client revenue or names &mdash; that's their data, and we guard it. The performance numbers speak for themselves.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card cs-card reveal" data-tilt>
+        <span class="cs-tag" data-bind="cs1_tag">E-commerce &middot; Performance Ads</span>
+        <div class="cs-num"><span class="count-up" data-bind="cs1_num">4.1</span>x</div>
+        <div class="cs-metric" data-bind="cs1_metric">Return on Ad Spend, Sustained</div>
+        <dl>
+          <dt>Challenge</dt><dd data-bind="cs1_challenge"></dd>
+          <dt>Solution</dt><dd data-bind="cs1_how"></dd>
+        </dl>
+      </div>
+      <div class="card cs-card reveal reveal-d1" data-tilt>
+        <span class="cs-tag" data-bind="cs2_tag">E-commerce &middot; Organic Growth</span>
+        <div class="cs-num"><span class="count-up" data-bind="cs2_num">186</span>K</div>
+        <div class="cs-metric" data-bind="cs2_metric">Monthly Sessions &mdash; 4000%+ Growth</div>
+        <dl>
+          <dt>Challenge</dt><dd data-bind="cs2_challenge"></dd>
+          <dt>Solution</dt><dd data-bind="cs2_how"></dd>
+        </dl>
+      </div>
+      <div class="card cs-card reveal reveal-d2" data-tilt>
+        <span class="cs-tag" data-bind="cs3_tag">E-commerce &middot; Infrastructure</span>
+        <div class="cs-num"><span class="count-up" data-bind="cs3_num">735</span>+</div>
+        <div class="cs-metric" data-bind="cs3_metric">Products on a Custom-Built Live API</div>
+        <dl>
+          <dt>Challenge</dt><dd data-bind="cs3_challenge"></dd>
+          <dt>Solution</dt><dd data-bind="cs3_how"></dd>
+        </dl>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:40px" class="reveal"><a href="case-studies.html" class="s-link" style="font-size:16px">See All Case Studies <svg class="ic" aria-hidden="true"><use href="#i-right"/></svg></a></p>
+  </div>
+</section>
+
+<section class="story-band">
+  <div class="container">
+    <span class="kicker reveal" data-bind="story_kicker">The Journey</span>
+    <h2 class="reveal"><span data-bind="story_h1">3 Years of NEET. 592 Marks.</span><br><span class="flame" data-bind="story_h2">Then We Chose to Build Instead.</span></h2>
+    <div class="story-stats reveal reveal-d1">
+      <div class="story-stat"><b>3</b><span>Years of NEET grind</span></div>
+      <div class="story-stat"><b>0</b><span>Degrees required</span></div>
+      <div class="story-stat"><b>4.1x</b><span>ROAS built instead</span></div>
+    </div>
+    <p class="reveal reveal-d2" data-bind="story_p1"></p>
+    <p class="reveal reveal-d2" data-bind="story_p2"></p>
+    <span class="story-funny reveal reveal-d3" data-bind="story_funny"></span>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">How We Work</span>
+      <h2>From Where You Are to Where You Want to Be &mdash; <span class="accent">In 4 Steps</span></h2>
+    </div>
+    <div class="process-row">
+      <div class="process-line"><i></i></div>
+      <div class="process-step"><div class="step-orb">01</div><h4>Strategy Call</h4><p>Free 30-min call. We listen first, then map the gaps together.</p></div>
+      <div class="process-step"><div class="step-orb">02</div><h4>Growth Plan</h4><p>A clear, custom roadmap with targets, timelines, and budget.</p></div>
+      <div class="process-step"><div class="step-orb">03</div><h4>Launch &amp; Execute</h4><p>Campaigns go live. Tracking on. Every rupee accounted for.</p></div>
+      <div class="process-step"><div class="step-orb">04</div><h4>Optimize &amp; Scale</h4><p>Weekly improvements. We double down on what's working.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="tools-strip">
+  <p class="strip-title" data-bind="tools_head">OUR ARSENAL</p>
+  <div class="marquee marquee-tools" data-marquee="tools" aria-hidden="true"><div class="marquee-track"></div></div>
+  <p class="strip-funny" data-bind="tools_funny"></p>
+</div>
+
+
+<section class="game-zone section-alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker" data-bind="game_kicker">A Little Fun</span>
+      <h2 data-bind="game_h">Think Catching Leads Is Easy?</h2>
+      <p data-bind="game_sub"></p>
+    </div>
+    <div class="game-area reveal">
+      <div class="game-hud"><span>Time: <b class="game-time">20</b>s</span><span>Caught: <b class="game-score">0</b></span></div>
+      <button class="btn btn-primary btn-pulse btn-lg game-start"><svg class="ic" aria-hidden="true"><use href="#i-gamepad"/></svg> <span data-bind="game_btn">Start Catching</span></button>
+      <div class="game-end">
+        <div class="game-end-score">0</div>
+        <h4><span data-bind="game_end_h">Not bad at all!</span> <span style="color:var(--mid);font-size:14px">(leads caught: <span class="game-end-score" style="font-size:14px;display:inline;color:var(--green)">0</span>)</span></h4>
+        <p data-bind="game_end_p"></p>
+        <form class="game-form">
+          <input type="text" name="name" placeholder="Your name" required>
+          <input type="tel" name="phone" placeholder="WhatsApp number" required>
+          <input type="email" name="email" placeholder="Email (optional)">
+          <button type="submit" class="btn btn-primary"><span data-bind="game_form_btn">Catch Me Some Real Leads</span></button>
+        </form>
+        <div class="game-form-success"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg> Got it! We'll be in touch faster than you caught that last lead.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section>
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">Testimonials</span>
+      <h2>Kind Words From <span class="accent">People We've Helped</span></h2>
+    </div>
+    <div class="grid-3">
+      <div class="card testi-card reveal" data-tilt>
+        <span class="testi-quote">&ldquo;</span>
+        <p class="testi-text" data-bind="ts1_text"></p>
+        <div class="testi-person"><div class="testi-avatar">EC</div><div><div class="testi-name" data-bind="ts1_name"></div><div class="testi-biz" data-bind="ts1_biz"></div><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></div>
+      </div>
+      <div class="card testi-card reveal reveal-d1" data-tilt>
+        <span class="testi-quote">&ldquo;</span>
+        <p class="testi-text" data-bind="ts2_text"></p>
+        <div class="testi-person"><div class="testi-avatar" style="background:linear-gradient(135deg,#1A3A6B,#00D4FF)">MW</div><div><div class="testi-name" data-bind="ts2_name"></div><div class="testi-biz" data-bind="ts2_biz"></div><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></div>
+      </div>
+      <div class="card testi-card reveal reveal-d2" data-tilt>
+        <span class="testi-quote">&ldquo;</span>
+        <p class="testi-text" data-bind="ts3_text"></p>
+        <div class="testi-person"><div class="testi-avatar" style="background:linear-gradient(135deg,#1A3A6B,#00C896)">CB</div><div><div class="testi-name" data-bind="ts3_name"></div><div class="testi-biz" data-bind="ts3_biz"></div><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section-alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">Why Trust Us</span>
+      <h2 data-bind="cred_head">Certified, Accountable, and Easy to Reach</h2>
+    </div>
+    <div class="cred-grid">
+      <div class="cred-card reveal"><svg class="ic" aria-hidden="true"><use href="#i-award"/></svg><b data-bind="cred1_t">Google Ads Certified</b><span data-bind="cred1_s">Google Skillshop</span></div>
+      <div class="cred-card reveal reveal-d1"><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg><b data-bind="cred2_t">Meta Blueprint</b><span data-bind="cred2_s">Ads Manager Certification</span></div>
+      <div class="cred-card reveal reveal-d2"><svg class="ic" aria-hidden="true"><use href="#i-grad"/></svg><b data-bind="cred3_t">IIT Madras &mdash; GenAI</b><span data-bind="cred3_s">Advanced Software Dev. (Pursuing)</span></div>
+      <div class="cred-card reveal reveal-d3"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg><b data-bind="cred4_t">2-Hour Response</b><span data-bind="cred4_s">Mon&ndash;Sat, 9AM&ndash;7PM</span></div>
+    </div>
+    <p class="promise-band reveal" data-bind="promise">Our promise: if we don't believe we can genuinely help you, we'll say so on the call &mdash; and point you somewhere better.</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">Team</span>
+      <h2>The People Behind <span class="accent">the Curve</span></h2>
+    </div>
+    <div class="founders-grid">
+      <div class="card team-card reveal" data-tilt>
+        <div class="team-photo">SM<img src="assets/img/sahin.jpg" alt="Sahin Molla" loading="lazy" onerror="this.remove()"></div>
+        <h4 data-bind="founder_name">Sahin Molla</h4>
+        <div class="team-role" data-bind="founder_title">Founder &middot; Full-Stack Developer &amp; Growth Strategist</div>
+        <p data-bind="founder_bio"></p>
+        <div class="social-row" style="margin-top:16px">
+          <a data-social="fb" href="#" title="Facebook"><svg class="ic" aria-hidden="true"><use href="#i-fb"/></svg></a>
+          <a data-social="insta" href="#" title="Instagram"><svg class="ic" aria-hidden="true"><use href="#i-ig"/></svg></a>
+        </div>
+      </div>
+      <div class="card team-card reveal reveal-d1" data-tilt>
+        <div class="team-photo" style="background:linear-gradient(135deg,#1A3A6B,#00D4FF)">AA<img src="assets/img/team/ashif.jpg" alt="Ashif Akhon" loading="lazy" onerror="this.remove()"></div>
+        <h4 data-bind="cofounder_name">Ashif Akhon</h4>
+        <div class="team-role" data-bind="cofounder_title">Co-Founder &middot; Operations &amp; Client Success</div>
+        <p data-bind="cofounder_bio"></p>
+      </div>
+    </div>
+    <div class="member-grid" data-team></div>
+    <div class="team-count-band reveal"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg><span><b data-bind="team_count">20+</b> <span data-bind="team_count_label">specialists across marketing, video, dev, design &amp; e-commerce</span></span></div>
+    <p class="team-note reveal" data-bind="team_note"></p>
+  </div>
+</section>
+
+
+<section class="section-alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">FAQ</span>
+      <h2>Every Question You're Thinking, <span class="accent">Answered</span></h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item"><button class="faq-q">How soon will I see results from digital marketing?<span class="chev"><svg class="ic" aria-hidden="true"><use href="#i-down"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">Paid ads typically generate leads within the first 2&ndash;4 weeks. SEO takes 3&ndash;6 months to compound. On your strategy call we'll give you honest timelines for your specific industry &mdash; no inflated promises.</div></div></div>
+      <div class="faq-item"><button class="faq-q">What is your minimum contract period?<span class="chev"><svg class="ic" aria-hidden="true"><use href="#i-down"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">Most retainers run 3 months minimum &mdash; that's the honest window needed to show real results. After that, we earn your business month by month. No long lock-ins.</div></div></div>
+      <div class="faq-item"><button class="faq-q">Do I need a large budget to start?<span class="chev"><svg class="ic" aria-hidden="true"><use href="#i-down"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">No. Our Starter Package begins at &#8377;15,000/month. We'll tell you upfront what's realistic at your budget &mdash; and if your budget is too small to win, we'll say so kindly and honestly.</div></div></div>
+      <div class="faq-item"><button class="faq-q">Do you work outside Kolkata and Delhi?<span class="chev"><svg class="ic" aria-hidden="true"><use href="#i-down"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">Of course. We're remote-capable and serve clients across all of India &mdash; Kolkata, Delhi, and everywhere between and beyond.</div></div></div>
+      <div class="faq-item"><button class="faq-q">What makes Shahin Web different from other agencies?<span class="chev"><svg class="ic" aria-hidden="true"><use href="#i-down"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">We've actually done the work &mdash; 186K monthly sessions and a sustained 4.1x ROAS, with the entire tech stack (Next.js, APIs, automations) built in-house. And you work directly with the founders.</div></div></div>
+      <div class="faq-item"><button class="faq-q">How do you measure and report results?<span class="chev"><svg class="ic" aria-hidden="true"><use href="#i-down"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">You get real-time dashboard access plus a weekly summary in plain English: leads generated, cost per lead, revenue impact. Your data stays private &mdash; always.</div></div></div>
+      <div class="faq-item"><button class="faq-q">Do you manage ad budgets or just provide strategy?<span class="chev"><svg class="ic" aria-hidden="true"><use href="#i-down"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">Both. We can fully manage your ad accounts end-to-end, or work alongside your in-house team as strategists. Most clients choose full management.</div></div></div>
+      <div class="faq-item"><button class="faq-q">Can I start with just one service?<span class="chev"><svg class="ic" aria-hidden="true"><use href="#i-down"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">Yes. Many clients start with one service &mdash; usually ads or SEO &mdash; and expand once they see results. We'll recommend the highest-impact starting point on your call.</div></div></div>
+      <div class="faq-item"><button class="faq-q">Do you offer a free audit?<span class="chev"><svg class="ic" aria-hidden="true"><use href="#i-down"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">Yes &mdash; a free marketing audit covering your website, ads, and Google presence, with a clear list of gaps and opportunities. No strings attached.</div></div></div>
+      <div class="faq-item"><button class="faq-q">How do I get started?<span class="chev"><svg class="ic" aria-hidden="true"><use href="#i-down"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">Book a free 30-minute strategy call. We'll review your current marketing, identify the biggest opportunities, and give you a clear picture of where you could be in 90 days.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <canvas id="particles2"></canvas>
+  <div class="container">
+    <h2 class="reveal" data-bind="cta_h">Your Growth Deserves a Serious Plan. Let's Build It Together.</h2>
+    <p class="reveal reveal-d1" data-bind="cta_p"></p>
+    <a href="book-call.html" class="btn btn-primary btn-pulse btn-lg reveal reveal-d2" data-bind="cta_btn">Book My Free Strategy Call</a>
+    <p class="micro reveal reveal-d3" data-bind="cta_micro"></p>
+    <p class="wa-line reveal reveal-d3">Prefer WhatsApp? <a href="#" data-wa-link target="_blank" rel="noopener">Chat with us now &mdash; <span data-bind="whatsapp">+91 74777 53500</span></a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="logo"><span class="logo-mark logo-mark--svg"><svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="lgmf" x1="0" y1="48" x2="48" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#1E6FFF"/><stop offset="1" stop-color="#00D4FF"/></linearGradient></defs><path d="M5 41 C18 41 15 25 24 24 C33 23 30 8 43 7" fill="none" stroke="url(#lgmf)" stroke-width="5" stroke-linecap="round"/><path d="M34 7 L43 7 L43 16" fill="none" stroke="#00D4FF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="5" cy="41" r="3.5" fill="#00C896"/></svg></span>SHAHIN&nbsp;<span class="logo-web">WEB</span></a>
+        <p class="footer-tagline" data-bind="footer_tagline">India's Growth-First Agency.</p>
+        <div class="social-row">
+          <a data-social="fb" href="#" title="Facebook"><svg class="ic" aria-hidden="true"><use href="#i-fb"/></svg></a>
+          <a data-social="insta" href="#" title="Instagram"><svg class="ic" aria-hidden="true"><use href="#i-ig"/></svg></a>
+          <a data-social="li" href="#" title="LinkedIn"><svg class="ic" aria-hidden="true"><use href="#i-li"/></svg></a>
+          <a data-social="reddit" href="#" title="Reddit"><svg class="ic" aria-hidden="true"><use href="#i-reddit"/></svg></a>
+          <a data-social="yt" href="#" title="YouTube"><svg class="ic" aria-hidden="true"><use href="#i-yt"/></svg></a>
+          <a data-wa-link href="#" title="WhatsApp" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-chat"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Sitemap</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="case-studies.html">Case Studies</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="book-call.html">Book a Free Call</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="services.html">Performance Marketing</a></li>
+          <li><a href="services.html">Video Editing</a></li>
+          <li><a href="services.html">Web Development</a></li>
+          <li><a href="services.html">Design</a></li>
+          <li><a href="services.html">AI Automation</a></li>
+          <li><a href="services.html">E-commerce Management</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="#" data-tel-link><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg> <span data-bind="phone">+91 74777 53500</span></a></li>
+          <li><a href="#" data-mail-link><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg> <span data-bind="email">sahin@goodwordbooks.com</span></a></li>
+          <li><a href="#" data-wa-link target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-chat"/></svg> WhatsApp Us</a></li>
+          <li><p><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg> <span data-bind="address">Diamond Harbour &middot; Kolkata &middot; Delhi &middot; Pan-India</span></p></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span class="year">2026</span> Shahin Web. All rights reserved. <span data-bind="gst"></span><br><em style="opacity:.7" data-bind="footer_funny"></em></span>
+      <span><a href="#">Privacy Policy</a><a href="#">Terms</a><a href="admin.html" style="opacity:.45">Admin</a></span>
+    </div>
+  </div>
+</footer>
+<a href="#" data-wa-link class="wa-float" target="_blank" rel="noopener" title="Chat on WhatsApp"><svg class="ic ic-lg" aria-hidden="true"><use href="#i-chat"/></svg></a>
+<script src="assets/schema.js"></script>
+<script src="assets/main.js"></script>
+</body>
+</html>

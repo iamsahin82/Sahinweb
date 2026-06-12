@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel — Shahin Web</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --abyss:#0A0F1E; --navy:#0D1B3E; --blue:#1E6FFF; --cyan:#00D4FF;
+  --gold:#FFB800; --green:#00C896; --orange:#FF6B2B;
+  --light:#C8D2E0; --mid:#8494A9;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--abyss); color:var(--light); font-family:'Inter',sans-serif; font-size:15px; min-height:100vh; }
+h1,h2,h3 { font-family:'Montserrat',sans-serif; color:#fff; }
+
+/* Login */
+.login-wrap { min-height:100vh; display:grid; place-items:center; background:radial-gradient(ellipse at 50% 0%, #1A3A6B 0%, #0A0F1E 70%); }
+.login-card { width:min(400px,92%); background:rgba(13,27,62,.7); backdrop-filter:blur(20px); border:1px solid rgba(30,111,255,.35); border-radius:20px; padding:42px; text-align:center; box-shadow:0 30px 80px rgba(0,0,0,.5); }
+.logo-mark { width:52px; height:52px; margin:0 auto 18px; border-radius:14px; background:linear-gradient(135deg,#1E6FFF,#00D4FF); display:grid; place-items:center; font-size:26px; color:#fff; font-weight:800; box-shadow:0 0 24px rgba(30,111,255,.6); font-family:'Montserrat',sans-serif; }
+.login-card h2 { margin-bottom:6px; }
+.login-card p { font-size:13.5px; color:var(--mid); margin-bottom:26px; }
+input, textarea, select {
+  width:100%; background:#0D1730; color:#fff; border:1px solid rgba(30,111,255,.25);
+  border-radius:10px; padding:13px 15px; font-family:'Inter',sans-serif; font-size:15px;
+}
+input:focus, textarea:focus { outline:none; border-color:var(--blue); box-shadow:0 0 14px rgba(30,111,255,.3); }
+.btn {
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  font-family:'Montserrat',sans-serif; font-weight:700; font-size:14.5px;
+  padding:13px 26px; border-radius:11px; border:none; cursor:pointer;
+  background:linear-gradient(135deg,#1E6FFF,#00D4FF); color:#fff;
+  box-shadow:0 0 18px rgba(30,111,255,.45); transition:transform .25s, box-shadow .25s;
+  text-decoration:none;
+}
+.btn:hover { transform:translateY(-2px); box-shadow:0 0 26px rgba(30,111,255,.65); }
+.btn-ghost { background:transparent; border:1.5px solid rgba(200,210,224,.3); box-shadow:none; color:var(--light); }
+.btn-ghost:hover { border-color:var(--cyan); color:var(--cyan); box-shadow:none; }
+.btn-danger { background:linear-gradient(135deg,#e23a3a,#FF6B2B); box-shadow:0 0 16px rgba(255,107,43,.35); }
+.btn-sm { padding:8px 14px; font-size:12.5px; border-radius:8px; }
+
+/* Layout */
+.app { display:none; }
+.topbar {
+  position:sticky; top:0; z-index:50; display:flex; align-items:center; justify-content:space-between;
+  padding:14px 26px; background:rgba(10,15,30,.85); backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(30,111,255,.25);
+}
+.topbar .brand { display:flex; align-items:center; gap:12px; font-family:'Montserrat',sans-serif; font-weight:800; letter-spacing:1px; color:#fff; }
+.topbar .brand .logo-mark { width:34px; height:34px; margin:0; font-size:17px; border-radius:9px; }
+.topbar .actions { display:flex; gap:10px; align-items:center; }
+.main { width:min(1100px,94%); margin:30px auto 60px; }
+
+.tabs { display:flex; gap:8px; margin-bottom:28px; flex-wrap:wrap; }
+.tab {
+  font-family:'Montserrat',sans-serif; font-weight:700; font-size:14px;
+  padding:11px 22px; border-radius:100px; cursor:pointer; border:1px solid rgba(255,255,255,.12);
+  background:transparent; color:var(--mid); transition:all .25s;
+}
+.tab.active { background:linear-gradient(135deg,#1E6FFF,#00D4FF); color:#fff; border-color:transparent; box-shadow:0 0 18px rgba(30,111,255,.4); }
+.tab .badge { background:var(--orange); color:#fff; font-size:11px; border-radius:100px; padding:2px 8px; margin-left:6px; }
+
+.panel { display:none; }
+.panel.active { display:block; animation:fadeUp .4s ease; }
+@keyframes fadeUp { from { opacity:0; transform:translateY(14px);} }
+
+.section-card {
+  background:#101C38; border:1px solid rgba(30,111,255,.2); border-radius:18px;
+  padding:28px; margin-bottom:22px;
+}
+.section-card h3 { font-size:16px; margin-bottom:4px; }
+.section-card .hint { font-size:13px; color:var(--mid); margin-bottom:20px; }
+.fgrid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.fgrid .full { grid-column:1/-1; }
+.f label { display:block; font-size:11.5px; font-weight:600; letter-spacing:1.2px; text-transform:uppercase; color:var(--mid); margin-bottom:7px; }
+.f { min-width:0; }
+
+.savebar {
+  position:fixed; bottom:0; left:0; right:0; z-index:60;
+  background:rgba(10,15,30,.92); backdrop-filter:blur(14px);
+  border-top:1px solid rgba(30,111,255,.3);
+  padding:14px 26px; display:none; align-items:center; justify-content:space-between; gap:14px;
+}
+.savebar.show { display:flex; }
+.savebar span { font-size:13.5px; color:var(--gold); }
+
+/* Stats overview */
+.ov-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:28px; }
+.ov-card { background:#101C38; border:1px solid rgba(30,111,255,.2); border-radius:16px; padding:22px; }
+.ov-num { font-family:'Montserrat',sans-serif; font-weight:800; font-size:32px; color:#fff; text-shadow:0 0 16px rgba(0,212,255,.4); }
+.ov-label { font-size:12.5px; color:var(--mid); margin-top:4px; }
+
+/* Leads table */
+table { width:100%; border-collapse:collapse; }
+th { text-align:left; font-size:11.5px; letter-spacing:1.2px; text-transform:uppercase; color:var(--mid); padding:12px 14px; border-bottom:1px solid rgba(255,255,255,.1); }
+td { padding:14px; font-size:14px; border-bottom:1px solid rgba(255,255,255,.05); vertical-align:top; }
+tr:hover td { background:rgba(30,111,255,.05); }
+.lead-msg { color:var(--mid); font-size:13px; max-width:300px; }
+.pill { display:inline-block; font-size:11px; font-weight:700; padding:3px 10px; border-radius:100px; background:rgba(0,200,150,.12); color:var(--green); border:1px solid rgba(0,200,150,.35); }
+.empty { text-align:center; padding:60px 20px; color:var(--mid); }
+.empty .big { font-size:44px; margin-bottom:14px; }
+
+.toast {
+  position:fixed; top:80px; right:24px; z-index:100;
+  background:rgba(0,200,150,.12); border:1px solid rgba(0,200,150,.5); color:var(--green);
+  padding:14px 22px; border-radius:12px; font-weight:600; font-size:14px;
+  opacity:0; transform:translateY(-10px); transition:all .35s; pointer-events:none;
+  backdrop-filter:blur(10px);
+}
+.toast.show { opacity:1; transform:none; }
+.note { font-size:12.5px; color:var(--mid); border-left:3px solid var(--gold); padding:10px 14px; background:rgba(255,184,0,.06); border-radius:0 10px 10px 0; margin-bottom:24px; }
+
+@media (max-width:760px) {
+  .fgrid, .ov-grid { grid-template-columns:1fr; }
+  .topbar { padding:12px 16px; }
+  th:nth-child(4), td:nth-child(4) { display:none; }
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login-wrap" id="loginView">
+  <div class="login-card">
+    <div class="logo-mark">⟋</div>
+    <h2>Shahin Web Admin</h2>
+    <p>Enter your passcode to manage the site</p>
+    <input type="password" id="passInput" placeholder="Passcode" style="margin-bottom:16px" autofocus>
+    <button class="btn" style="width:100%" onclick="login()">Unlock Dashboard</button>
+    <p style="margin-top:16px;font-size:12px;color:var(--mid)">Default passcode: <b style="color:var(--gold)">shahin2026</b> (change it in Settings)</p>
+  </div>
+</div>
+
+<!-- APP -->
+<div class="app" id="appView">
+  <div class="topbar">
+    <div class="brand"><span class="logo-mark">⟋</span>SHAHIN WEB — ADMIN</div>
+    <div class="actions">
+      <a class="btn btn-ghost btn-sm" href="index.html" target="_blank">View Site</a>
+      <button class="btn btn-ghost btn-sm" onclick="logout()">Lock</button>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="ov-grid">
+      <div class="ov-card"><div class="ov-num" id="ovLeads">0</div><div class="ov-label">Total Leads Captured</div></div>
+      <div class="ov-card"><div class="ov-num" id="ovToday">0</div><div class="ov-label">Leads Today</div></div>
+      <div class="ov-card"><div class="ov-num" id="ovCalls">0</div><div class="ov-label">Call Bookings</div></div>
+      <div class="ov-card"><div class="ov-num" id="ovEdits">0</div><div class="ov-label">Content Fields Customized</div></div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" data-panel="leads">Leads Inbox <span class="badge" id="leadBadge" style="display:none">0</span></button>
+      <button class="tab" data-panel="content">Content Editor</button>
+      <button class="tab" data-panel="settings">Settings</button>
+    </div>
+
+    <!-- LEADS -->
+    <div class="panel active" id="panel-leads">
+      <div class="section-card">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:10px">
+          <div><h3>Leads Inbox</h3><div class="hint" style="margin:0">Every form submission from the website lands here, newest first.</div></div>
+          <div style="display:flex;gap:10px">
+            <button class="btn btn-sm" onclick="exportCSV()">Export CSV</button>
+            <button class="btn btn-danger btn-sm" onclick="clearLeads()">Clear All</button>
+          </div>
+        </div>
+        <div id="leadsTableWrap"></div>
+      </div>
+      <p class="note">Leads are stored in this browser (no server needed). For live email/WhatsApp notifications when you host the site, connect the forms to a service like Formspree, Web3Forms, or your WordPress backend — the form fields are ready for it.</p>
+    </div>
+
+    <!-- CONTENT (auto-generated from assets/schema.js — every text on the site) -->
+    <div class="panel" id="panel-content">
+      <div class="note" style="margin-bottom:18px">This editor is <b style="color:#fff">auto-generated from the site's content schema</b> — every headline, number, funny line, and button label on the website is here. Edit → Save → the site updates instantly.</div>
+      <input id="fieldSearch" placeholder="Search fields… (e.g. 'whatsapp', 'funny', 'hero')" style="margin-bottom:20px">
+      <div id="contentSections"></div>
+    </div>
+
+    <!-- SETTINGS -->
+    <div class="panel" id="panel-settings">
+      <div class="section-card">
+        <h3>Change Passcode</h3>
+        <div class="hint">Protects this admin panel on this browser.</div>
+        <div class="fgrid">
+          <div class="f"><label>New Passcode</label><input type="password" id="newPass" placeholder="Min 6 characters"></div>
+          <div class="f" style="display:flex;align-items:flex-end"><button class="btn" onclick="changePass()">Update Passcode</button></div>
+        </div>
+      </div>
+      <div class="section-card">
+        <h3>Reset Content</h3>
+        <div class="hint">Restore all website text and numbers to the original blueprint defaults. Leads are not affected.</div>
+        <button class="btn btn-danger" onclick="resetContent()">Reset All Content to Defaults</button>
+      </div>
+      <p class="note">This admin panel saves everything in your browser's local storage — perfect for previewing and tweaking the site. When you move to live hosting (e.g. WordPress per your blueprint), this same content structure maps cleanly to your CMS fields.</p>
+    </div>
+  </div>
+
+  <div class="savebar" id="savebar">
+    <span>● Unsaved changes</span>
+    <div style="display:flex;gap:10px">
+      <button class="btn btn-ghost btn-sm" onclick="loadContent()">Discard</button>
+      <button class="btn" onclick="saveContent()">Save & Publish to Site</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="assets/schema.js"></script>
+<script src="assets/main.js"></script>
+<script>
+(function () {
+  var DEFAULTS = window.SW_DEFAULTS || {};
+  var SCHEMA = window.SW_SCHEMA || [];
+
+  /* ---- build editor from schema ---- */
+  function buildEditor() {
+    var wrap = document.getElementById('contentSections');
+    if (!wrap) return;
+    var html = '';
+    SCHEMA.forEach(function (sec) {
+      html += '<div class="section-card" data-section>' +
+        '<h3><span style="color:var(--cyan)">&#9656;</span> ' + sec.section + '</h3>' +
+        '<div class="hint">' + sec.hint + '</div><div class="fgrid">';
+      sec.fields.forEach(function (f) {
+        var cls = (f.type === 'textarea') ? 'f full' : 'f';
+        html += '<div class="' + cls + '" data-field-label="' + f.label.toLowerCase() + ' ' + f.key + '">' +
+          '<label>' + f.label + '</label>';
+        if (f.type === 'textarea') {
+          html += '<textarea data-key="' + f.key + '" rows="3"></textarea>';
+        } else {
+          html += '<input data-key="' + f.key + '">';
+        }
+        html += '</div>';
+      });
+      html += '</div></div>';
+    });
+    wrap.innerHTML = html;
+  }
+  buildEditor();
+
+  /* ---- field search ---- */
+  var search = document.getElementById('fieldSearch');
+  if (search) {
+    search.addEventListener('input', function () {
+      var q = search.value.toLowerCase().trim();
+      document.querySelectorAll('[data-field-label]').forEach(function (f) {
+        f.style.display = (!q || f.getAttribute('data-field-label').indexOf(q) !== -1) ? '' : 'none';
+      });
+      document.querySelectorAll('[data-section]').forEach(function (s) {
+        var any = Array.prototype.some.call(s.querySelectorAll('[data-field-label]'), function (f) { return f.style.display !== 'none'; });
+        s.style.display = any ? '' : 'none';
+      });
+    });
+  }
+  var $ = function (s) { return document.querySelector(s); };
+  var $$ = function (s) { return Array.prototype.slice.call(document.querySelectorAll(s)); };
+
+  /* ---- auth ---- */
+  function pass() { return localStorage.getItem('sw_admin_pass') || 'shahin2026'; }
+  window.login = function () {
+    if ($('#passInput').value === pass()) {
+      sessionStorage.setItem('sw_admin_ok', '1');
+      showApp();
+    } else {
+      $('#passInput').style.borderColor = '#e23a3a';
+      $('#passInput').value = '';
+      $('#passInput').placeholder = 'Wrong passcode — try again';
+    }
+  };
+  window.logout = function () { sessionStorage.removeItem('sw_admin_ok'); location.reload(); };
+  $('#passInput').addEventListener('keydown', function (e) { if (e.key === 'Enter') window.login(); });
+  window.changePass = function () {
+    var p = $('#newPass').value.trim();
+    if (p.length < 6) return toast('Passcode must be at least 6 characters', true);
+    localStorage.setItem('sw_admin_pass', p);
+    $('#newPass').value = '';
+    toast('Passcode updated ✓');
+  };
+
+  function showApp() {
+    $('#loginView').style.display = 'none';
+    $('#appView').style.display = 'block';
+    loadContent(); renderLeads(); refreshOverview();
+  }
+  if (sessionStorage.getItem('sw_admin_ok') === '1') showApp();
+
+  /* ---- tabs ---- */
+  $$('.tab').forEach(function (t) {
+    t.addEventListener('click', function () {
+      $$('.tab').forEach(function (x) { x.classList.remove('active'); });
+      $$('.panel').forEach(function (x) { x.classList.remove('active'); });
+      t.classList.add('active');
+      $('#panel-' + t.getAttribute('data-panel')).classList.add('active');
+    });
+  });
+
+  /* ---- content ---- */
+  function saved() { try { return JSON.parse(localStorage.getItem('sw_content') || '{}'); } catch (e) { return {}; } }
+  window.loadContent = function () {
+    var s = saved();
+    $$('[data-key]').forEach(function (f) {
+      var k = f.getAttribute('data-key');
+      f.value = (s[k] !== undefined && s[k] !== '') ? s[k] : (DEFAULTS[k] || '');
+    });
+    $('#savebar').classList.remove('show');
+    refreshOverview();
+  };
+  window.saveContent = function () {
+    var out = {};
+    $$('[data-key]').forEach(function (f) {
+      var k = f.getAttribute('data-key');
+      if (f.value !== DEFAULTS[k]) out[k] = f.value;
+    });
+    localStorage.setItem('sw_content', JSON.stringify(out));
+    $('#savebar').classList.remove('show');
+    refreshOverview();
+    toast('Saved! The website now shows your changes ✓');
+  };
+  window.resetContent = function () {
+    if (!confirm('Reset all content to blueprint defaults?')) return;
+    localStorage.removeItem('sw_content');
+    loadContent();
+    toast('Content reset to defaults ✓');
+  };
+  document.addEventListener('input', function (e) {
+    if (e.target.hasAttribute && e.target.hasAttribute('data-key')) $('#savebar').classList.add('show');
+  });
+
+  /* ---- leads ---- */
+  function leads() { try { return JSON.parse(localStorage.getItem('sw_leads') || '[]'); } catch (e) { return []; } }
+  window.renderLeads = function () {
+    var L = leads(), wrap = $('#leadsTableWrap');
+    if (!L.length) {
+      wrap.innerHTML = '<div class="empty">No leads yet.<br><span style="font-size:13px">Submit the contact or book-call form on the website and it will appear here instantly.</span></div>';
+      return;
+    }
+    var rows = L.map(function (l, i) {
+      var extra = [];
+      if (l.day || l.time) extra.push('Call: ' + (l.day || '') + ' ' + (l.time || ''));
+      if (l.industry && l.industry.indexOf('Select') !== 0) extra.push('Industry: ' + l.industry);
+      if (l.email) extra.push('Email: ' + l.email);
+      return '<tr>' +
+        '<td><b style="color:#fff">' + esc(l.name || '—') + '</b><br><span class="pill">' + (l.day ? 'Call Booking' : 'Message') + '</span></td>' +
+        '<td>' + esc(l.phone || '—') + '</td>' +
+        '<td><div class="lead-msg">' + esc(l.message || '—') + (extra.length ? '<br>' + extra.map(esc).join(' · ') : '') + '</div></td>' +
+        '<td style="white-space:nowrap;color:var(--mid);font-size:12.5px">' + esc(l.date || '') + '</td>' +
+        '<td><button class="btn btn-danger btn-sm" onclick="delLead(' + i + ')"></button></td>' +
+        '</tr>';
+    }).join('');
+    wrap.innerHTML = '<table><thead><tr><th>Lead</th><th>Phone</th><th>Details</th><th>When</th><th></th></tr></thead><tbody>' + rows + '</tbody></table>';
+  };
+  window.delLead = function (i) {
+    var L = leads(); L.splice(i, 1);
+    localStorage.setItem('sw_leads', JSON.stringify(L));
+    renderLeads(); refreshOverview();
+  };
+  window.clearLeads = function () {
+    if (!confirm('Delete ALL leads? This cannot be undone.')) return;
+    localStorage.removeItem('sw_leads');
+    renderLeads(); refreshOverview();
+  };
+  window.exportCSV = function () {
+    var L = leads();
+    if (!L.length) return toast('No leads to export', true);
+    var cols = ['date', 'name', 'phone', 'email', 'industry', 'day', 'time', 'message', 'page'];
+    var csv = cols.join(',') + '\n' + L.map(function (l) {
+      return cols.map(function (c) { return '"' + String(l[c] || '').replace(/"/g, '""') + '"'; }).join(',');
+    }).join('\n');
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
+    a.download = 'shahin-web-leads.csv';
+    a.click();
+  };
+
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+
+  function refreshOverview() {
+    var L = leads();
+    $('#ovLeads').textContent = L.length;
+    var today = new Date().toLocaleDateString('en-IN');
+    $('#ovToday').textContent = L.filter(function (l) { return (l.date || '').indexOf(today) === 0; }).length;
+    $('#ovCalls').textContent = L.filter(function (l) { return l.day; }).length;
+    $('#ovEdits').textContent = Object.keys(saved()).length;
+    var badge = $('#leadBadge');
+    badge.style.display = L.length ? 'inline-block' : 'none';
+    badge.textContent = L.length;
+  }
+
+  var toastTimer;
+  function toast(msg, warn) {
+    var t = $('#toast');
+    t.textContent = msg;
+    t.style.borderColor = warn ? 'rgba(255,107,43,.6)' : 'rgba(0,200,150,.5)';
+    t.style.color = warn ? 'var(--orange)' : 'var(--green)';
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { t.classList.remove('show'); }, 2600);
+  }
+  window.toast = toast;
+})();
+</script>
+</body>
+</html>

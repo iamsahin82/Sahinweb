@@ -1,0 +1,16 @@
+PHOTOS & VIDEO — Shahin Web
+============================
+Already working:
+  sahin.jpg      -> Your photo (Team, About, Book-Call pages)
+  mwk.jpg        -> Maulana Wahiduddin Khan (Portfolio card)
+  goodword.jpg   -> Goodword Books logo (Clients strip)
+
+To add team member photos:
+  Save as assets/img/team/firstname.jpg (lowercase first name)
+  Examples: team/ashif.jpg, team/afruja.jpg, team/azizul.jpg
+  No photo? A styled initials avatar shows automatically.
+
+To enable the video popup (shows once, 5 seconds after page load):
+  Save your video as  Ad-Duha.mp4  in the main site folder
+  (next to index.html). If the file is missing, no popup appears.
+  You can switch it off anytime in Admin > Video Popup.
